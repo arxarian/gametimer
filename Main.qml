@@ -30,6 +30,7 @@ Window {
             id: footer
             Layout.fillWidth: true
             Layout.preferredHeight: parent.height * 0.15
+            Layout.margins: 5
         }
     }
 }
