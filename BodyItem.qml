@@ -16,14 +16,6 @@ Item {
         interactive: false
         model: 5
 
-        highlight: Component {
-            Rectangle {
-                width: 10
-                height: 10
-                color: "green"
-            }
-        }
-
         delegate: Item {
             height: view.height
             width: view.width / view.count
@@ -33,10 +25,22 @@ Item {
 
                 Rectangle {
                     radius: 10
-                    color: "gold"
+                    color: "purple"
+                    opacity: 0.3
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     Layout.margins: parent.width * 0.05
+                    Layout.rightMargin: parent.width * 0.3
+                    Layout.leftMargin: parent.width * 0.3
+
+                    Binding on opacity {
+                        when: view.currentIndex === index
+                        value: 1
+                    }
+
+                    Behavior on opacity {
+                        OpacityAnimator {duration: 300}
+                    }
                 }
 
                 Text {
