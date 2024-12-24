@@ -1,9 +1,11 @@
 #include "applicationdata.h"
+#include "playeritem.h"
 
 ApplicationData::ApplicationData(QObject *parent)
     : QObject{parent}
 {
-    //
+    m_playerModel = new PlayerModel(this);
+    connect(m_playerModel, &PlayerModel::newTurnStarted, this, &ApplicationData::newTurn);
 }
 
 int ApplicationData::turn() const
@@ -18,6 +20,12 @@ void ApplicationData::setTurn(int turn)
         m_turn = turn;
         emit turnChanged();
     }
+}
+
+void ApplicationData::newTurn()
+{
+    m_turn++;
+    emit turnChanged();
 }
 
 int ApplicationData::totalTime() const
@@ -50,5 +58,19 @@ void ApplicationData::setRunning(bool running)
     if (m_running)
     {
         // m_totalTimer.
+    }
+}
+
+PlayerModel *ApplicationData::players() const
+{
+    return m_playerModel;
+}
+
+void ApplicationData::setPlayers(PlayerModel *playerModel)
+{
+    if (m_playerModel != playerModel)
+    {
+        m_playerModel = playerModel;
+        emit playersChanged();
     }
 }

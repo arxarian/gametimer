@@ -1,14 +1,12 @@
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
+import GameTimer
 
 Item {
     id: root
 
-    signal nextPlayer
-
     Button {
         text: "Next player"
-        onClicked: root.nextPlayer()
+        onClicked: ApplicationData.players.nextPlayer()
     }
 }

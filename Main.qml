@@ -16,11 +16,6 @@ Window {
             id: head
             Layout.preferredHeight: parent.height * 0.15
             Layout.fillWidth: true
-
-            onNextPlayer: {
-                body.nextPlayer()
-                ApplicationData.turn = ApplicationData.turn + 1
-            }
         }
 
         BodyItem {

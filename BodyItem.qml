@@ -1,24 +1,24 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
+import GameTimer
 
 Item {
     id: body
-
-    signal nextPlayer
-
-    onNextPlayer: view.currentIndex = (view.currentIndex + 1) % view.count
 
     ListView {
         id: view
         anchors.fill: parent
         orientation: Qt.Horizontal
         interactive: false
-        model: 5
+        model: ApplicationData.players
+        currentIndex: ApplicationData.players.currentPlayerIndex
 
         delegate: Item {
+            id: item
             height: view.height
             width: view.width / view.count
+
+            property PlayerItem player: model.object
 
             ColumnLayout {
                 anchors.fill: parent
@@ -46,7 +46,7 @@ Item {
                 Text {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: "Player " + index
+                    text: item.player.name
 
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true
