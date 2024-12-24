@@ -75,6 +75,29 @@ void PlayerModel::nextPlayer()
     }
 }
 
+void PlayerModel::appendPlayer()
+{
+    emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    m_items.append(new PlayerItem(QString("Player %1").arg(rowCount() + 1), this));
+    emit endInsertRows();
+
+    emit countChanged();
+}
+
+void PlayerModel::removeLastPlayer()
+{
+    if (rowCount() > 0)
+    {
+        emit beginRemoveRows(QModelIndex(), rowCount() - 1, rowCount() - 1);
+        // PlayerItem* item = m_items.last();
+        // item->deleteLater(); // TODO - memory leak?
+        m_items.removeLast();
+        emit endRemoveRows();
+
+        emit countChanged();
+    }
+}
+
 
 PlayerItem *PlayerModel::currentPlayer() const
 {
@@ -102,4 +125,9 @@ void PlayerModel::setCurrentPlayerIndex(int currentPlayerINdex)
         m_currentPlayerIndex = currentPlayerINdex;
         emit currentPlayerIndexChanged();
     }
+}
+
+int PlayerModel::count() const
+{
+    return rowCount();
 }

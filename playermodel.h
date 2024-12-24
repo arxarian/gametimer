@@ -11,6 +11,7 @@ class PlayerModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY(PlayerItem* currentPlayer READ currentPlayer WRITE setCurrentPlayer NOTIFY currentPlayerChanged FINAL)
     Q_PROPERTY(int currentPlayerIndex READ currentPlayerIndex WRITE setCurrentPlayerIndex NOTIFY currentPlayerIndexChanged FINAL)
+    Q_PROPERTY(int count READ count NOTIFY countChanged FINAL)
     QML_ELEMENT
 
 public:
@@ -28,24 +29,28 @@ public:
 
     Q_INVOKABLE void nextPlayer();
 
+    Q_INVOKABLE void appendPlayer();
+    Q_INVOKABLE void removeLastPlayer();
+
     PlayerItem *currentPlayer() const;
     void setCurrentPlayer(PlayerItem *currentPlayer);
 
     int currentPlayerIndex() const;
     void setCurrentPlayerIndex(int currentPlayerIndex);
 
+    int count() const;
+
 signals:
     void newTurnStarted();
     void currentPlayerChanged(PlayerItem *currentPlayer);
     void currentPlayerIndexChanged();
+    void countChanged();
 
 private:
     QList<PlayerItem*> m_items;
 
     PlayerItem *m_currentPlayer = nullptr;
     int m_currentPlayerIndex = 0;
-
-private slots:
 };
 
 #endif // PLAYERMODEL_H
