@@ -19,3 +19,36 @@ void ApplicationData::setTurn(int turn)
         emit turnChanged();
     }
 }
+
+int ApplicationData::totalTime() const
+{
+    return m_totalTime;
+}
+
+void ApplicationData::setTotalTime(int totalTime)
+{
+    if (m_totalTime != totalTime)
+    {
+        m_totalTime = totalTime;
+        emit totalTimeChanged();
+    }
+}
+
+bool ApplicationData::running() const
+{
+    return m_running;
+}
+
+void ApplicationData::setRunning(bool running)
+{
+    if (m_running != running)
+    {
+        m_running = running;
+        emit runningChanged();
+    }
+
+    if (m_running)
+    {
+        // m_totalTimer.
+    }
+}

@@ -19,12 +19,25 @@ qt_add_qml_module(appGameTimer
     VERSION 1.0
     QML_FILES
         Main.qml
-        QML_FILES HeadItem.qml
-        QML_FILES FooterItem.qml
-        QML_FILES BodyItem.qml
-        RESOURCES android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
-        RESOURCES android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml android/gradle/wrapper/gradle-wrapper.jar android/gradle/wrapper/gradle-wrapper.properties android/gradle.properties android/gradlew android/gradlew.bat
-    SOURCES applicationdata.h applicationdata.cpp
+        HeadItem.qml
+        FooterItem.qml
+        BodyItem.qml
+    RESOURCES
+        android/AndroidManifest.xml
+        android/build.gradle
+        android/res/values/libs.xml
+        android/res/xml/qtprovider_paths.xml
+        android/gradle/wrapper/gradle-wrapper.jar
+        android/gradle/wrapper/gradle-wrapper.properties
+        android/gradle.properties android/gradlew
+        android/gradlew.bat
+    SOURCES
+        applicationdata.h
+        applicationdata.cpp
+        playermodel.h
+        playermodel.cpp
+        playeritem.h
+        playeritem.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
