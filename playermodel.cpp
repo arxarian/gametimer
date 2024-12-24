@@ -14,6 +14,7 @@ PlayerModel::PlayerModel(QObject *parent)
     {
         m_currentPlayerIndex = -1;
         nextPlayer();
+        m_items.first()->stopTimer();
     }
 
     GameData* gameData = qobject_cast<GameData*>(parent);

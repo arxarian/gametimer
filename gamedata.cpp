@@ -6,7 +6,7 @@ GameData::GameData(QObject *parent)
     m_playerModel = new PlayerModel(this);
     connect(m_playerModel, &PlayerModel::newTurnStarted, this, &GameData::newTurn);
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &GameData::elapsedTimeChanged);
-    setRunning(true);
+    setRunning(false);
 }
 
 int GameData::turn() const

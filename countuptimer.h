@@ -13,6 +13,8 @@ class CountUpTimer : public QObject
 public:
     explicit CountUpTimer(QObject *parent = nullptr);
 
+    Q_INVOKABLE int elapsedTimeNumber() const;
+
     void start();
     void stop();
 

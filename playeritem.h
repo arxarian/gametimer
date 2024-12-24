@@ -13,6 +13,7 @@ class PlayerItem : public QObject
     Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged FINAL)
     Q_PROPERTY(bool alive READ alive WRITE setAlive NOTIFY aliveChanged FINAL)
     Q_PROPERTY(QString elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
+    Q_PROPERTY(int elapsedTimeNumber READ elapsedTimeNumber NOTIFY elapsedTimeNumberChanged FINAL)
     QML_ELEMENT
 
 public:
@@ -32,12 +33,14 @@ public:
     void setActive(bool active);
 
     QString elapsedTime() const;
+    int elapsedTimeNumber() const;
 
 signals:
     void nameChanged();
     void aliveChanged();
     void activeChanged();
     void elapsedTimeChanged();
+    void elapsedTimeNumberChanged();
 
 private:
     CountUpTimer* m_timer = nullptr;

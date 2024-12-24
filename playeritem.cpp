@@ -17,6 +17,7 @@ PlayerItem::PlayerItem(const QString name, QObject *parent)
 
     m_timer = new CountUpTimer(this);
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeChanged);
+    connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeNumberChanged);
 }
 
 void PlayerItem::stopTimer()
@@ -86,4 +87,9 @@ void PlayerItem::setActive(bool active)
 QString PlayerItem::elapsedTime() const
 {
     return m_timer->elapsedTime();
+}
+
+int PlayerItem::elapsedTimeNumber() const
+{
+    return m_timer->elapsedTimeNumber();
 }
