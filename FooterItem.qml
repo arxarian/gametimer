@@ -1,9 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
+import GameTimer
 
 Item {
     id: root
+
+    property ApplicationData applicationData: ApplicationData {}
 
     RowLayout {
         anchors.fill: parent
@@ -26,10 +28,9 @@ Item {
 
             Text {
                 anchors.fill: parent
-                text: qsTr("Turn %1").arg(5)
+                text: qsTr("Turn %1").arg(root.applicationData.turn)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-
             }
         }
     }

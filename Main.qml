@@ -1,12 +1,14 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
+import GameTimer
 
 Window {
+    id: root
     width: 800
     height: 450
     visible: true
     title: qsTr("Game Timer")
+
 
     ColumnLayout {
         anchors.fill: parent
@@ -16,7 +18,10 @@ Window {
             Layout.preferredHeight: parent.height * 0.15
             Layout.fillWidth: true
 
-            onNextPlayer: body.nextPlayer()
+            onNextPlayer: {
+                body.nextPlayer()
+                footer.applicationData.turn = footer.applicationData.turn + 1
+            }
         }
 
         BodyItem {
