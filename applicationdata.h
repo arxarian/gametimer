@@ -9,6 +9,7 @@ class ApplicationData : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int turn READ turn WRITE setTurn NOTIFY turnChanged)
+    QML_SINGLETON
     QML_ELEMENT
 public:
     explicit ApplicationData(QObject *parent = nullptr);

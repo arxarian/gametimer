@@ -9,7 +9,6 @@ Window {
     visible: true
     title: qsTr("Game Timer")
 
-
     ColumnLayout {
         anchors.fill: parent
 
@@ -20,7 +19,7 @@ Window {
 
             onNextPlayer: {
                 body.nextPlayer()
-                footer.applicationData.turn = footer.applicationData.turn + 1
+                ApplicationData.turn = ApplicationData.turn + 1
             }
         }
 
