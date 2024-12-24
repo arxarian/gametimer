@@ -1,4 +1,5 @@
 #include "playeritem.h"
+#include "playermodel.h"
 
 PlayerItem::PlayerItem(QObject *parent)
     : QObject{parent}
@@ -9,7 +10,13 @@ PlayerItem::PlayerItem(QObject *parent)
 PlayerItem::PlayerItem(const QString name, QObject *parent)
     : m_name{name}, QObject{parent}
 {
-    //
+    PlayerModel* model = qobject_cast<PlayerModel*>(parent);
+    connect(model, &PlayerModel::currentPlayerChanged, this, [this](PlayerItem* player){
+        setActive(player == this);
+    });
+
+    m_timer = new CountUpTimer(this);
+    connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeChanged);
 }
 
 QString PlayerItem::name() const
@@ -40,20 +47,6 @@ void PlayerItem::setAlive(bool alive)
     }
 }
 
-int PlayerItem::timePlayed() const
-{
-    return m_timePlayed;
-}
-
-void PlayerItem::setTimePlayed(int timePlayed)
-{
-    if (m_timePlayed != timePlayed)
-    {
-        m_timePlayed = timePlayed;
-        emit timePlayedChanged();
-    }
-}
-
 bool PlayerItem::active() const
 {
     return m_active;
@@ -66,4 +59,18 @@ void PlayerItem::setActive(bool active)
         m_active = active;
         emit activeChanged();
     }
+
+    if (m_active)
+    {
+        m_timer->start();
+    }
+    else
+    {
+        m_timer->stop();
+    }
+}
+
+QString PlayerItem::elapsedTime() const
+{
+    return m_timer->elapsedTime();
 }

@@ -33,7 +33,7 @@ Item {
                     Layout.leftMargin: parent.width * 0.3
 
                     Binding on opacity {
-                        when: GameData.players.currentPlayerIndex === index
+                        when: item.player.active
                         value: 1
                     }
 
@@ -45,7 +45,7 @@ Item {
                 Text {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: item.player.name
+                    text: qsTr("%1\n%2").arg(item.player.elapsedTime).arg(item.player.name)
 
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true

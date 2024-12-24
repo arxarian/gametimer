@@ -68,7 +68,7 @@ void PlayerModel::setCurrentPlayer(PlayerItem *currentPlayer)
     if (m_currentPlayer != currentPlayer)
     {
         m_currentPlayer = currentPlayer;
-        emit currentPlayerChanged();
+        emit currentPlayerChanged(m_currentPlayer);
     }
 }
 

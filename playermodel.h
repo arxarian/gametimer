@@ -36,7 +36,7 @@ public:
 
 signals:
     void newTurnStarted();
-    void currentPlayerChanged();
+    void currentPlayerChanged(PlayerItem *currentPlayer);
     void currentPlayerIndexChanged();
 
 private:

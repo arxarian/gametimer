@@ -38,6 +38,8 @@ qt_add_qml_module(appGameTimer
         playermodel.cpp
         playeritem.h
         playeritem.cpp
+        countuptimer.h
+        countuptimer.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
