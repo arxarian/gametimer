@@ -26,7 +26,7 @@ Item {
 
             Text {
                 anchors.fill: parent
-                text: qsTr("Turn %1").arg(ApplicationData.turn)
+                text: qsTr("Turn %1").arg(GameData.turn)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
             }

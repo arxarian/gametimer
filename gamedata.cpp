@@ -1,19 +1,19 @@
-#include "applicationdata.h"
+#include "gamedata.h"
 #include "playeritem.h"
 
-ApplicationData::ApplicationData(QObject *parent)
+GameData::GameData(QObject *parent)
     : QObject{parent}
 {
     m_playerModel = new PlayerModel(this);
-    connect(m_playerModel, &PlayerModel::newTurnStarted, this, &ApplicationData::newTurn);
+    connect(m_playerModel, &PlayerModel::newTurnStarted, this, &GameData::newTurn);
 }
 
-int ApplicationData::turn() const
+int GameData::turn() const
 {
     return m_turn;
 }
 
-void ApplicationData::setTurn(int turn)
+void GameData::setTurn(int turn)
 {
     if (m_turn != turn)
     {
@@ -22,18 +22,18 @@ void ApplicationData::setTurn(int turn)
     }
 }
 
-void ApplicationData::newTurn()
+void GameData::newTurn()
 {
     m_turn++;
     emit turnChanged();
 }
 
-int ApplicationData::totalTime() const
+int GameData::totalTime() const
 {
     return m_totalTime;
 }
 
-void ApplicationData::setTotalTime(int totalTime)
+void GameData::setTotalTime(int totalTime)
 {
     if (m_totalTime != totalTime)
     {
@@ -42,12 +42,12 @@ void ApplicationData::setTotalTime(int totalTime)
     }
 }
 
-bool ApplicationData::running() const
+bool GameData::running() const
 {
     return m_running;
 }
 
-void ApplicationData::setRunning(bool running)
+void GameData::setRunning(bool running)
 {
     if (m_running != running)
     {
@@ -61,12 +61,12 @@ void ApplicationData::setRunning(bool running)
     }
 }
 
-PlayerModel *ApplicationData::players() const
+PlayerModel *GameData::players() const
 {
     return m_playerModel;
 }
 
-void ApplicationData::setPlayers(PlayerModel *playerModel)
+void GameData::setPlayers(PlayerModel *playerModel)
 {
     if (m_playerModel != playerModel)
     {

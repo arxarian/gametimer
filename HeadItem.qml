@@ -6,7 +6,7 @@ Item {
     id: root
 
     Button {
-        text: "Next player"
-        onClicked: ApplicationData.players.nextPlayer()
+        text: qsTr("Next player")
+        onClicked: GameData.players.nextPlayer()
     }
 }

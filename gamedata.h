@@ -1,5 +1,5 @@
-#ifndef APPLICATIONDATA_H
-#define APPLICATIONDATA_H
+#ifndef GAMEDATA_H
+#define GAMEDATA_H
 
 #include <QObject>
 #include <qelapsedtimer.h>
@@ -8,7 +8,7 @@
 
 #include "playermodel.h"
 
-class ApplicationData : public QObject
+class GameData : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged FINAL)
@@ -18,7 +18,7 @@ class ApplicationData : public QObject
     QML_SINGLETON
     QML_ELEMENT
 public:
-    explicit ApplicationData(QObject *parent = nullptr);
+    explicit GameData(QObject *parent = nullptr);
 
     int turn() const;
     void setTurn(int turn);
@@ -46,4 +46,4 @@ private:
     PlayerModel *m_playerModel = nullptr;
 };
 
-#endif // APPLICATIONDATA_H
+#endif // GAMEDATA_H

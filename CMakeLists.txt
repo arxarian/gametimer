@@ -32,8 +32,8 @@ qt_add_qml_module(appGameTimer
         android/gradle.properties android/gradlew
         android/gradlew.bat
     SOURCES
-        applicationdata.h
-        applicationdata.cpp
+        gamedata.h
+        gamedata.cpp
         playermodel.h
         playermodel.cpp
         playeritem.h

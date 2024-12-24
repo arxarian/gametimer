@@ -10,8 +10,7 @@ Item {
         anchors.fill: parent
         orientation: Qt.Horizontal
         interactive: false
-        model: ApplicationData.players
-        currentIndex: ApplicationData.players.currentPlayerIndex
+        model: GameData.players
 
         delegate: Item {
             id: item
@@ -34,7 +33,7 @@ Item {
                     Layout.leftMargin: parent.width * 0.3
 
                     Binding on opacity {
-                        when: view.currentIndex === index
+                        when: GameData.players.currentPlayerIndex === index
                         value: 1
                     }
 
