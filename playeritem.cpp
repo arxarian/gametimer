@@ -19,6 +19,19 @@ PlayerItem::PlayerItem(const QString name, QObject *parent)
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeChanged);
 }
 
+void PlayerItem::stopTimer()
+{
+    m_timer->stop();
+}
+
+void PlayerItem::startTimerIfActive()
+{
+    if (m_active)
+    {
+        m_timer->start();
+    }
+}
+
 QString PlayerItem::name() const
 {
     return m_name;

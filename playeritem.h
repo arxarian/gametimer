@@ -19,6 +19,9 @@ public:
     explicit PlayerItem(QObject *parent = nullptr);
     explicit PlayerItem(const QString name, QObject *parent = nullptr);
 
+    void stopTimer();
+    void startTimerIfActive();
+
     QString name() const;
     void setName(const QString &name);
 

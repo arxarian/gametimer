@@ -1,11 +1,12 @@
 #include "gamedata.h"
-#include "playeritem.h"
 
 GameData::GameData(QObject *parent)
-    : QObject{parent}
+    : QObject{parent}, m_timer(new CountUpTimer(this))
 {
     m_playerModel = new PlayerModel(this);
     connect(m_playerModel, &PlayerModel::newTurnStarted, this, &GameData::newTurn);
+    connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &GameData::elapsedTimeChanged);
+    setRunning(true);
 }
 
 int GameData::turn() const
@@ -57,7 +58,11 @@ void GameData::setRunning(bool running)
 
     if (m_running)
     {
-        // m_totalTimer.
+        m_timer->start();
+    }
+    else
+    {
+        m_timer->stop();
     }
 }
 
@@ -73,4 +78,9 @@ void GameData::setPlayers(PlayerModel *playerModel)
         m_playerModel = playerModel;
         emit playersChanged();
     }
+}
+
+QString GameData::elapsedTime() const
+{
+    return m_timer->elapsedTime();
 }

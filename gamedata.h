@@ -2,11 +2,11 @@
 #define GAMEDATA_H
 
 #include <QObject>
-#include <qelapsedtimer.h>
 #include <qqml.h>
 #include <QtQml/qqmlregistration.h>
 
 #include "playermodel.h"
+#include "countuptimer.h"
 
 class GameData : public QObject
 {
@@ -15,6 +15,7 @@ class GameData : public QObject
     Q_PROPERTY(int turn READ turn WRITE setTurn NOTIFY turnChanged FINAL)
     Q_PROPERTY(int totalTime READ totalTime WRITE setTotalTime NOTIFY totalTimeChanged FINAL)
     Q_PROPERTY(PlayerModel* players READ players WRITE setPlayers NOTIFY playersChanged FINAL)
+    Q_PROPERTY(QString elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
     QML_SINGLETON
     QML_ELEMENT
 public:
@@ -33,13 +34,17 @@ public:
     PlayerModel *players() const;
     void setPlayers(PlayerModel *playerModel);
 
+    QString elapsedTime() const;
+
 signals:
     void turnChanged();
     void totalTimeChanged();
     void runningChanged();
     void playersChanged();
+    void elapsedTimeChanged();
 
 private:
+    CountUpTimer* m_timer = nullptr;
     int m_turn = 1;
     int m_totalTime = 0;
     bool m_running = false;

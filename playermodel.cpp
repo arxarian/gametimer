@@ -1,5 +1,6 @@
 #include "playermodel.h"
 #include "playeritem.h"
+#include "gamedata.h"
 
 PlayerModel::PlayerModel(QObject *parent)
     : QAbstractListModel{parent}
@@ -14,6 +15,22 @@ PlayerModel::PlayerModel(QObject *parent)
         m_currentPlayerIndex = -1;
         nextPlayer();
     }
+
+    GameData* gameData = qobject_cast<GameData*>(parent);
+    connect(gameData, &GameData::runningChanged, this, [this, gameData]
+    {
+        std::for_each(m_items.begin(), m_items.end(), [gameData](PlayerItem* item)
+        {
+            if (gameData->running())
+            {
+                item->startTimerIfActive();
+            }
+            else
+            {
+                item->stopTimer();
+            }
+        });
+    });
 }
 
 

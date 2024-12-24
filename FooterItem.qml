@@ -14,7 +14,7 @@ Item {
 
             Text {
                 anchors.fill: parent
-                text: qsTr("Total time %1").arg(new Date().toTimeString())
+                text: qsTr("Total time %1").arg(GameData.elapsedTime)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
             }
