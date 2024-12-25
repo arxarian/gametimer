@@ -16,14 +16,20 @@ Window {
 
         HeadItem {
             id: head
+            onToggleScreens: stackLayout.currentIndex = 1 - stackLayout.currentIndex
             Layout.preferredHeight: parent.height * 0.12
             Layout.fillWidth: true
         }
 
-        BodyItem {
-            id: body
+        StackLayout {
+            id: stackLayout
+            // currentIndex: 1
             Layout.fillHeight: true
             Layout.fillWidth: true
+
+            BodyItem {}
+
+            TurnsView {}
         }
 
         FooterItem {

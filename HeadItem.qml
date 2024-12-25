@@ -6,6 +6,8 @@ import GameTimer
 Item {
     id: root
 
+    signal toggleScreens
+
     Item {
         id: wrapper
         anchors.fill: parent
@@ -31,6 +33,15 @@ Item {
                 when: GameData.running
                 value: "black"
             }
+        }
+
+        ToolButton {
+            anchors.right: parent.right
+            visible: GameData.running
+            icon.source: "graph.png"
+            icon.height: wrapper.height * 0.5
+            icon.width: wrapper.height * 0.5
+            onClicked: root.toggleScreens()
         }
 
         Row {

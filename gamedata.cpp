@@ -4,37 +4,25 @@ GameData::GameData(QObject *parent)
     : QObject{parent}, m_timer(new CountUpTimer(this))
 {
     m_playerModel = new PlayerModel(this);
-    connect(m_playerModel, &PlayerModel::newTurnStarted, this, &GameData::newTurn);
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &GameData::elapsedTimeChanged);
     setRunning(false);
+
+    m_turnsModel = new TurnModel(this);
+    connect(m_playerModel, &PlayerModel::newTurnStarted, m_turnsModel, &TurnModel::newTurn);
 }
 
 void GameData::reset()
 {
     setRunning(false);
-    setTurn(1);
+
     m_timer->reset();
     m_playerModel->reset();
+    m_turnsModel->reset();
 }
 
 int GameData::turn() const
 {
-    return m_turn;
-}
-
-void GameData::setTurn(int turn)
-{
-    if (m_turn != turn)
-    {
-        m_turn = turn;
-        emit turnChanged();
-    }
-}
-
-void GameData::newTurn()
-{
-    m_turn++;
-    emit turnChanged();
+    return m_turnsModel->count() + 1;
 }
 
 int GameData::totalTime() const
@@ -91,4 +79,18 @@ void GameData::setPlayers(PlayerModel *playerModel)
 QString GameData::elapsedTime() const
 {
     return m_timer->elapsedTime();
+}
+
+TurnModel *GameData::turns() const
+{
+    return m_turnsModel;
+}
+
+void GameData::setTurns(TurnModel *turns)
+{
+    if (m_turnsModel != turns)
+    {
+        m_turnsModel = turns;
+        emit turnsChanged();
+    }
 }
