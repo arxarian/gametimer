@@ -8,12 +8,26 @@ Item {
     ListView {
         id: view
 
-        property int maxReachableTime: 120
+        property int maxReachableTime: 60
 
         anchors.fill: parent
         orientation: Qt.Horizontal
         interactive: false
         model: GameData.players
+        currentIndex: GameData.players.currentPlayerIndex
+
+        highlight: Item {
+            height: view.height
+            width: view.width / view.count
+
+            Rectangle {
+                color: "purple"
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: -5
+                height: parent.height * 0.1 + 10
+                width: parent.width
+            }
+        }
 
         delegate: Item {
             id: item
@@ -86,6 +100,7 @@ Item {
                 }
 
                 Text {
+                    font.pixelSize: height / 2
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     text: qsTr("%1\n%2").arg(item.player.elapsedTime).arg(item.player.name)

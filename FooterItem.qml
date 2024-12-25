@@ -14,6 +14,7 @@ Item {
 
             Text {
                 anchors.fill: parent
+                font.pixelSize: parent.height / 3
                 text: qsTr("Total time %1").arg(GameData.elapsedTime)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -26,8 +27,9 @@ Item {
 
             Text {
                 anchors.fill: parent
+                font.pixelSize: parent.height / 3
                 text: qsTr("Turn %1").arg(GameData.turn)
-                horizontalAlignment: Text.AlignLeft
+                horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
             }
         }

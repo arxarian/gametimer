@@ -4,6 +4,7 @@ import GameTimer
 
 Window {
     id: root
+    color: "#EEEEEE"
     width: 800
     height: 450
     visible: true
@@ -23,14 +24,12 @@ Window {
             id: body
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.margins: 5
         }
 
         FooterItem {
             id: footer
             Layout.fillWidth: true
             Layout.preferredHeight: parent.height * 0.15
-            Layout.margins: 5
         }
     }
 }
