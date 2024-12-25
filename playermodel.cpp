@@ -5,7 +5,7 @@
 PlayerModel::PlayerModel(QObject *parent)
     : QAbstractListModel{parent}
 {
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         m_items.append(new PlayerItem(QString("Player %1").arg(i + 1), this));
     }
