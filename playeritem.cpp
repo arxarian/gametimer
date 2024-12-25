@@ -18,6 +18,17 @@ PlayerItem::PlayerItem(const QString name, QObject *parent)
     m_timer = new CountUpTimer(this);
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeChanged);
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &PlayerItem::elapsedTimeNumberChanged);
+
+    connect(this, &PlayerItem::aliveChanged, this, [this]{
+        if (alive())
+        {
+            startTimerIfActive();
+        }
+        else
+        {
+            stopTimer();
+        }
+    });
 }
 
 void PlayerItem::stopTimer()
@@ -27,7 +38,7 @@ void PlayerItem::stopTimer()
 
 void PlayerItem::startTimerIfActive()
 {
-    if (m_active)
+    if (m_active && m_alive)
     {
         m_timer->start();
     }

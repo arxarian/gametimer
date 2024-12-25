@@ -13,7 +13,7 @@ PlayerModel::PlayerModel(QObject *parent)
     if (!m_items.empty())
     {
         m_currentPlayerIndex = -1;
-        nextPlayer();
+        setNextPlayer();
         m_items.first()->stopTimer();
     }
 
@@ -63,10 +63,25 @@ QHash<int, QByteArray> PlayerModel::roleNames() const
     return {{Roles::ObjectRole, "object"}};
 }
 
-void PlayerModel::nextPlayer()
+void PlayerModel::setNextPlayer()
 {
     int nextPlayerIndex = (m_currentPlayerIndex + 1) % m_items.count();
-    setCurrentPlayer(m_items.at(nextPlayerIndex));
+    PlayerItem* nextPlayer = m_items.at(nextPlayerIndex);
+
+    if (nextPlayer == currentPlayer())
+    {
+        emit newTurnStarted();
+        return;
+    }
+
+    if (!nextPlayer->alive())
+    {
+        m_currentPlayerIndex++;
+        setNextPlayer();
+        return;
+    }
+
+    setCurrentPlayer(nextPlayer);
     setCurrentPlayerIndex(nextPlayerIndex);
 
     if (nextPlayerIndex == 0)

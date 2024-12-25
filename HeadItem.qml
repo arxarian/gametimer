@@ -9,7 +9,7 @@ Item {
         Button {
             text: qsTr("Next player")
             enabled: GameData.running
-            onClicked: GameData.players.nextPlayer()
+            onClicked: GameData.players.setNextPlayer()
         }
 
         Button {

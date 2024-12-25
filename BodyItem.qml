@@ -46,6 +46,20 @@ Item {
                     Layout.rightMargin: parent.width * 0.3
                     Layout.leftMargin: parent.width * 0.3
 
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: item.player.alive = !item.player.alive
+                    }
+
+                    Image {
+                        visible: !item.player.alive
+                        anchors.centerIn: parent
+                        height: parent.height
+                        width: parent.width * 0.7
+                        fillMode: Image.PreserveAspectFit
+                        source: "skeleton.png"
+                    }
+
                     Rectangle {
                         anchors.bottom: parent.bottom
                         height: parent.height * item.player.elapsedTimeNumber / view.maxReachableTime
@@ -53,7 +67,7 @@ Item {
 
                         width: parent.width
                         // radius: 10
-                        color: "purple"
+                        color: item.player.alive ? "purple" : "gray"
                         opacity: 0.3
 
                         Behavior on height {

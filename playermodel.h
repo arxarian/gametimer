@@ -27,7 +27,7 @@ public:
     Q_INVOKABLE virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     Q_INVOKABLE virtual QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE void nextPlayer();
+    Q_INVOKABLE void setNextPlayer();
 
     Q_INVOKABLE void appendPlayer();
     Q_INVOKABLE void removeLastPlayer();
