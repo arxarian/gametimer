@@ -60,18 +60,18 @@ QHash<int, QByteArray> PlayerModel::roleNames() const
 
 void PlayerModel::setNextPlayer()
 {
-    int nextPlayerIndex = (m_currentPlayerIndex + 1) % m_items.count();
+    const int nextPlayerIndex = (m_currentPlayerIndex + 1) % m_items.count();
     PlayerItem* nextPlayer = m_items.at(nextPlayerIndex);
-
-    if (nextPlayer == currentPlayer())
-    {
-        emit newTurnStarted();
-        return;
-    }
 
     if (nextPlayerIndex == 0)
     {
         emit newTurnStarted();
+    }
+
+    if (nextPlayer == currentPlayer())
+    {
+        m_currentPlayerIndex++;
+        return;
     }
 
     if (!nextPlayer->alive())
