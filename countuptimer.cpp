@@ -18,6 +18,13 @@ void CountUpTimer::stop()
     m_timer->stop();
 }
 
+void CountUpTimer::reset()
+{
+    stop();
+    m_elapsedTime = 0;
+    emit elapsedTimeChanged();
+}
+
 void CountUpTimer::updateElapsedTime()
 {
     m_elapsedTime++;

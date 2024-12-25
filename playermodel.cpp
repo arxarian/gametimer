@@ -10,12 +10,7 @@ PlayerModel::PlayerModel(QObject *parent)
         m_items.append(new PlayerItem(QString("Player %1").arg(i + 1), this));
     }
 
-    if (!m_items.empty())
-    {
-        m_currentPlayerIndex = -1;
-        setNextPlayer();
-        m_items.first()->stopTimer();
-    }
+    reset();
 
     GameData* gameData = qobject_cast<GameData*>(parent);
     connect(gameData, &GameData::runningChanged, this, [this, gameData]
@@ -74,6 +69,11 @@ void PlayerModel::setNextPlayer()
         return;
     }
 
+    if (nextPlayerIndex == 0)
+    {
+        emit newTurnStarted();
+    }
+
     if (!nextPlayer->alive())
     {
         m_currentPlayerIndex++;
@@ -83,11 +83,6 @@ void PlayerModel::setNextPlayer()
 
     setCurrentPlayer(nextPlayer);
     setCurrentPlayerIndex(nextPlayerIndex);
-
-    if (nextPlayerIndex == 0)
-    {
-        emit newTurnStarted();
-    }
 }
 
 void PlayerModel::appendPlayer()
@@ -113,6 +108,21 @@ void PlayerModel::removeLastPlayer()
     }
 }
 
+void PlayerModel::reset()
+{
+    std::for_each(m_items.begin(), m_items.end(), [](PlayerItem* item)
+    {
+      item->setActive(false);
+      item->setAlive(true);
+      item->resetTimer();
+    });
+
+    setCurrentPlayerIndex(0);
+    m_currentPlayer = nullptr;
+    setCurrentPlayer(m_items.first());
+    m_currentPlayer->stopTimer();
+}
+
 
 PlayerItem *PlayerModel::currentPlayer() const
 {
@@ -133,11 +143,11 @@ int PlayerModel::currentPlayerIndex() const
     return m_currentPlayerIndex;
 }
 
-void PlayerModel::setCurrentPlayerIndex(int currentPlayerINdex)
+void PlayerModel::setCurrentPlayerIndex(int currentPlayerIndex)
 {
-    if (m_currentPlayerIndex != currentPlayerINdex)
+    if (m_currentPlayerIndex != currentPlayerIndex)
     {
-        m_currentPlayerIndex = currentPlayerINdex;
+        m_currentPlayerIndex = currentPlayerIndex;
         emit currentPlayerIndexChanged();
     }
 }

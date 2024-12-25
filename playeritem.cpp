@@ -44,6 +44,12 @@ void PlayerItem::startTimerIfActive()
     }
 }
 
+void PlayerItem::resetTimer()
+{
+    m_timer->stop();
+    m_timer->reset();
+}
+
 QString PlayerItem::name() const
 {
     return m_name;

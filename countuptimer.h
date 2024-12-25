@@ -17,6 +17,7 @@ public:
 
     void start();
     void stop();
+    void reset();
 
     QString elapsedTime() const;
 

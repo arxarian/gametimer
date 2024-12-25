@@ -32,6 +32,8 @@ public:
     Q_INVOKABLE void appendPlayer();
     Q_INVOKABLE void removeLastPlayer();
 
+    void reset();
+
     PlayerItem *currentPlayer() const;
     void setCurrentPlayer(PlayerItem *currentPlayer);
 

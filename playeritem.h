@@ -22,6 +22,7 @@ public:
 
     void stopTimer();
     void startTimerIfActive();
+    void resetTimer();
 
     QString name() const;
     void setName(const QString &name);

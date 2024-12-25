@@ -9,6 +9,14 @@ GameData::GameData(QObject *parent)
     setRunning(false);
 }
 
+void GameData::reset()
+{
+    setRunning(false);
+    setTurn(1);
+    m_timer->reset();
+    m_playerModel->reset();
+}
+
 int GameData::turn() const
 {
     return m_turn;

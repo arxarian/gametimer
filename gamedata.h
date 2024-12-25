@@ -21,6 +21,8 @@ class GameData : public QObject
 public:
     explicit GameData(QObject *parent = nullptr);
 
+    Q_INVOKABLE void reset();
+
     int turn() const;
     void setTurn(int turn);
     void newTurn();

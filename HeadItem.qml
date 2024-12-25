@@ -40,11 +40,12 @@ Item {
             spacing: 5
             layoutDirection: Qt.RightToLeft
 
-            // ToolButton {
-            //     icon.source: "reset.png"
-            //     icon.height: wrapper.height * 0.5
-            //     icon.width: wrapper.height * 0.5
-            // }
+            ToolButton {
+                icon.source: "reset.png"
+                icon.height: wrapper.height * 0.5
+                icon.width: wrapper.height * 0.5
+                onClicked: GameData.reset()
+            }
 
             ToolButton {
                 icon.source: "minus.png"
