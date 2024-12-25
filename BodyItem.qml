@@ -36,7 +36,7 @@ Item {
 
                 Rectangle {
                     color: "transparent"
-                    radius: 10
+                    // radius: 10
                     border.width: 1
                     border.color: Qt.darker("purple")
 
@@ -52,7 +52,7 @@ Item {
                         z: - 1
 
                         width: parent.width
-                        radius: 10
+                        // radius: 10
                         color: "purple"
                         opacity: 0.3
 
