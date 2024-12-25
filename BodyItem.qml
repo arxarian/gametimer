@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+
 import GameTimer
 
 Item {
@@ -107,6 +109,37 @@ Item {
 
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: inputDialog.open()
+
+                        Dialog {
+                            id: inputDialog
+
+                            x: (parent.width - width) / 2
+                            y: (parent.height - height) / 2
+                            parent: Overlay.overlay
+
+                            focus: true
+                            modal: true
+                            title: qsTr("Change player name")
+                            standardButtons: Dialog.Ok | Dialog.Cancel
+
+                            onAccepted: {
+                                if (textField.text) {
+                                    item.player.name = textField.text
+                                }
+                            }
+
+                            TextField {
+                                id: textField
+                                focus: true
+                                placeholderText: item.player.name
+                                width: parent.width
+                            }
+                        }
+                    }
                 }
             }
         }
