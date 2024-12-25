@@ -11,10 +11,11 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 5
 
         HeadItem {
             id: head
-            Layout.preferredHeight: parent.height * 0.15
+            Layout.preferredHeight: parent.height * 0.12
             Layout.fillWidth: true
         }
 

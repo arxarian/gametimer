@@ -32,6 +32,12 @@ qt_add_qml_module(appGameTimer
         android/gradle.properties android/gradlew
         android/gradlew.bat
         skeleton.png
+        plus.png
+        minus.png
+        reset.png
+        next_player.png
+        play.png
+        pause.png
     SOURCES
         gamedata.h
         gamedata.cpp
