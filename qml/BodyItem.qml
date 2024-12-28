@@ -73,7 +73,7 @@ Item {
                         height: parent.height
                         width: parent.width * 0.7
                         fillMode: Image.PreserveAspectFit
-                        source: "skeleton.png"
+                        source: "qrc:/skeleton.png"
                     }
 
                     Rectangle {

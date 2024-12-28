@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>graph.png</file>
+        <file>minus.png</file>
+        <file>next_player.png</file>
+        <file>pause.png</file>
+        <file>play.png</file>
+        <file>plus.png</file>
+        <file>reset.png</file>
+        <file>skeleton.png</file>
+    </qresource>
+</RCC>

@@ -13,7 +13,7 @@ Item {
         anchors.fill: parent
 
         ToolButton {
-            icon.source: GameData.running ? "pause.png" : "play.png"
+            icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
             icon.height: wrapper.height * 0.5
             icon.width: wrapper.height * 0.5
             onClicked: GameData.running = !GameData.running
@@ -23,7 +23,7 @@ Item {
             visible: GameData.running
             anchors.horizontalCenter: parent.horizontalCenter
             // text: qsTr("Next\nplayer")
-            icon.source: "next_player.png"
+            icon.source: "qrc:/next_player.png"
             icon.height: wrapper.height * 0.5
             icon.width: wrapper.height * 0.5
             // enabled: GameData.running
@@ -38,7 +38,7 @@ Item {
         ToolButton {
             anchors.right: parent.right
             visible: GameData.running
-            icon.source: "graph.png"
+            icon.source: "qrc:/graph.png"
             icon.height: wrapper.height * 0.5
             icon.width: wrapper.height * 0.5
             onClicked: root.toggleScreens()
@@ -52,14 +52,14 @@ Item {
             layoutDirection: Qt.RightToLeft
 
             ToolButton {
-                icon.source: "reset.png"
+                icon.source: "qrc:/reset.png"
                 icon.height: wrapper.height * 0.5
                 icon.width: wrapper.height * 0.5
                 onClicked: GameData.reset()
             }
 
             ToolButton {
-                icon.source: "minus.png"
+                icon.source: "qrc:/minus.png"
                 icon.height: wrapper.height * 0.5
                 icon.width: wrapper.height * 0.5
                 enabled: GameData.players.count > 1
@@ -67,7 +67,7 @@ Item {
             }
 
             ToolButton {
-                icon.source: "plus.png"
+                icon.source: "qrc:/plus.png"
                 icon.height: wrapper.height * 0.5
                 icon.width: wrapper.height * 0.5
                 onClicked: GameData.players.appendPlayer()
