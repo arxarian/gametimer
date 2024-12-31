@@ -11,7 +11,7 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup()
 
 qt_add_executable(appGameTimer
-    main.cpp
+    sources/main.cpp
 )
 
 qt_add_resources(RESOURCES ${RESOURCE_FILES})
@@ -38,18 +38,18 @@ qt_add_qml_module(appGameTimer
         android/gradlew.bat
         images/images.qrc
     SOURCES
-        gamedata.h
-        gamedata.cpp
-        playermodel.h
-        playermodel.cpp
-        playeritem.h
-        playeritem.cpp
-        turnmodel.h
-        turnmodel.cpp
-        turnitem.h
-        turnitem.cpp
-        countuptimer.h
-        countuptimer.cpp
+        sources/gamedata.h
+        sources/gamedata.cpp
+        sources/playermodel.h
+        sources/playermodel.cpp
+        sources/playeritem.h
+        sources/playeritem.cpp
+        sources/turnmodel.h
+        sources/turnmodel.cpp
+        sources/turnitem.h
+        sources/turnitem.cpp
+        sources/countuptimer.h
+        sources/countuptimer.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -62,6 +62,10 @@ set_target_properties(appGameTimer PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+)
+
+target_include_directories(appGameTimer PRIVATE
+    sources
 )
 
 target_sources(appGameTimer PRIVATE ${RESOURCES})
