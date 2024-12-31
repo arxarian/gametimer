@@ -5,8 +5,8 @@ import GameTimer
 Window {
     id: root
     color: "#EEEEEE"
-    width: 800
-    height: 450
+    width: 450
+    height: 900
     visible: true
     title: qsTr("Game Timer")
 
