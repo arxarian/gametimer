@@ -41,7 +41,7 @@ Item {
             Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                height: parent.height * item.turn.time / view.maxReachableTime
+                height: parent.height * (item.turn ? item.turn.time : 0) / view.maxReachableTime
                 color: "purple"
 
                 Behavior on height {

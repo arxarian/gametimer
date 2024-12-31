@@ -99,8 +99,8 @@ void PlayerModel::removeLastPlayer()
     if (rowCount() > 0)
     {
         emit beginRemoveRows(QModelIndex(), rowCount() - 1, rowCount() - 1);
-        // PlayerItem* item = m_items.last();
-        // item->deleteLater(); // TODO - memory leak?
+        PlayerItem* item = m_items.last();
+        item->deleteLater();
         m_items.removeLast();
         emit endRemoveRows();
 

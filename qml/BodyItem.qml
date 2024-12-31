@@ -68,7 +68,7 @@ Item {
                     }
 
                     Image {
-                        visible: !item.player.alive
+                        visible: item.player ? !item.player.alive : false
                         anchors.centerIn: parent
                         height: parent.height
                         width: parent.width * 0.7
@@ -78,12 +78,12 @@ Item {
 
                     Rectangle {
                         anchors.bottom: parent.bottom
-                        height: parent.height * item.player.elapsedTimeNumber / view.maxReachableTime
+                        height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0) / view.maxReachableTime
                         z: - 1
 
                         width: parent.width
                         // radius: 10
-                        color: item.player.alive ? "purple" : "gray"
+                        color: item.player && item.player.alive ? "purple" : "gray"
                         opacity: 0.3
 
                         Behavior on height {
@@ -91,7 +91,7 @@ Item {
                         }
 
                         Binding on opacity {
-                            when: item.player.active
+                            when: item.player && item.player.active
                             value: 1
                         }
 
@@ -102,10 +102,14 @@ Item {
                 }
 
                 Text {
+                    id: text
+                    property int playerTime: item.player ? item.player.elapsedTime : 0
+                    property string playerName: item.player ? item.player.name : "undefined"
+
                     font.pixelSize: height / 2
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: qsTr("%1\n%2").arg(item.player.elapsedTime).arg(item.player.name)
+                    text: qsTr("%1\n%2").arg(text.playerTime).arg(text.playerName)
 
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true
@@ -135,7 +139,7 @@ Item {
                             TextField {
                                 id: textField
                                 focus: true
-                                placeholderText: item.player.name
+                                placeholderText: item.player ? item.player.name : ""
                                 width: parent.width
                             }
                         }

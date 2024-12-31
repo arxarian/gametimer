@@ -74,7 +74,8 @@ void TurnModel::reset()
     if (!m_items.isEmpty())
     {
         emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        m_items.clear();    // TODO - memory leaks!
+        qDeleteAll(m_items);
+        m_items.clear();
         emit endRemoveRows();
 
         emit countChanged();
