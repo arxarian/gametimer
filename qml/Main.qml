@@ -13,29 +13,91 @@ Window {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 5
+        spacing: 0
 
-        HeadItem {
-            id: head
-            onToggleScreens: stackLayout.currentIndex = 1 - stackLayout.currentIndex
-            Layout.preferredHeight: parent.height * 0.12
+        Item {
+            id: logoArea
+
+            Layout.preferredHeight: parent.height * 0.15
             Layout.fillWidth: true
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0.25
+                color: "purple"
+            }
+
+            Image {
+                anchors.fill: parent
+                source: "qrc:/logo.png"
+                fillMode: Image.PreserveAspectFit
+            }
         }
 
-        StackLayout {
-            id: stackLayout
-            // currentIndex: 1
+        Item {
+            id: controlArea
+
+            Layout.verticalStretchFactor: 1
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            BodyItem {}
-
-            TurnsView {}
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0.5
+                color: "purple"
+            }
         }
 
-        FooterItem {
-            id: footer
+        Item {
+            id: playersArea
+
+            Layout.verticalStretchFactor: 1
+            Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.preferredHeight: parent.height * 0.15
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0.8
+                color: "purple"
+            }
         }
+
+        Item {
+            id: turnsArea
+
+            Layout.verticalStretchFactor: 1
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 1
+                color: "purple"
+            }
+        }
+
+
+        // HeadItem {
+        //     id: head
+        //     onToggleScreens: stackLayout.currentIndex = 1 - stackLayout.currentIndex
+        //     Layout.preferredHeight: parent.height * 0.12
+        //     Layout.fillWidth: true
+        // }
+
+        // StackLayout {
+        //     id: stackLayout
+        //     Layout.fillHeight: true
+        //     Layout.fillWidth: true
+
+        //     BodyItem {}
+
+        //     TurnsView {}
+        // }
+
+        // FooterItem {
+        //     id: footer
+        //     Layout.fillWidth: true
+        //     Layout.preferredHeight: parent.height * 0.15
+        // }
     }
 }

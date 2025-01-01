@@ -8,5 +8,6 @@
         <file>plus.png</file>
         <file>reset.png</file>
         <file>skeleton.png</file>
+        <file>logo.png</file>
     </qresource>
 </RCC>
