@@ -48,21 +48,23 @@ Window {
             }
         }
 
-        Item {
+        PlayersItem {
             id: playersArea
+            z: 1
 
             Layout.verticalStretchFactor: 1
             Layout.fillHeight: true
             Layout.fillWidth: true
 
             Rectangle {
+                z: -1
                 anchors.fill: parent
                 opacity: 0.8
                 color: "purple"
             }
         }
 
-        Item {
+        TurnsItem {
             id: turnsArea
 
             Layout.verticalStretchFactor: 1
@@ -70,6 +72,7 @@ Window {
             Layout.fillWidth: true
 
             Rectangle {
+                z: -1
                 anchors.fill: parent
                 opacity: 1
                 color: "purple"

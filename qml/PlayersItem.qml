@@ -18,19 +18,6 @@ Item {
         model: GameData.players
         currentIndex: GameData.players.currentPlayerIndex
 
-        highlight: Item {
-            height: view.height
-            width: view.width / view.count
-
-            Rectangle {
-                color: "purple"
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: -5
-                height: parent.height * 0.1 + 10
-                width: parent.width
-            }
-        }
-
         delegate: Item {
             id: item
             height: view.height
@@ -114,33 +101,16 @@ Item {
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true
 
-                    MouseArea {
+                    EnterNameDialog {
+                        id: nameDialog
                         anchors.fill: parent
-                        onClicked: inputDialog.open()
 
-                        Dialog {
-                            id: inputDialog
+                        title: qsTr("Change player name")
+                        placeholderText: item.player ? item.player.name : ""
 
-                            x: (parent.width - width) / 2
-                            y: (parent.height - height) / 2
-                            parent: Overlay.overlay
-
-                            focus: true
-                            modal: true
-                            title: qsTr("Change player name")
-                            standardButtons: Dialog.Ok | Dialog.Cancel
-
-                            onAccepted: {
-                                if (textField.text) {
-                                    item.player.name = textField.text
-                                }
-                            }
-
-                            TextField {
-                                id: textField
-                                focus: true
-                                placeholderText: item.player ? item.player.name : ""
-                                width: parent.width
+                        onAccepted: {
+                            if (nameDialog.text) {
+                                item.player.name = nameDialog.text
                             }
                         }
                     }
