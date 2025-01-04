@@ -11,10 +11,8 @@ Item {
         property int maxReachableTime: 60
 
         anchors.fill: parent
-        anchors.leftMargin: parent.width * 0.1
-        anchors.rightMargin: parent.width * 0.1
-        anchors.topMargin: parent.height * 0.3
-        anchors.bottomMargin: parent.height * 0.2
+        anchors.margins: 5
+        clip: true
 
         orientation: Qt.Horizontal
         model: GameData.turns
@@ -27,7 +25,7 @@ Item {
             property TurnItem turn: model.object
 
             width: 15
-            height: view.height
+            height: view.height - text.contentHeight - 10
 
             Connections {
                 target: item.turn
@@ -42,7 +40,7 @@ Item {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 height: parent.height * (item.turn ? item.turn.time : 0) / view.maxReachableTime
-                color: "purple"
+                color: "#EEEEEE"
 
                 Behavior on height {
                     NumberAnimation {duration: 300}
@@ -50,6 +48,7 @@ Item {
             }
 
             Text {
+                id: text
                 anchors.topMargin: 5
                 anchors.top: parent.bottom
                 width: parent.width
