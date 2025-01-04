@@ -27,8 +27,8 @@ qt_add_qml_module(appGameTimer
         qml/Main.qml
         qml/HeadItem.qml
         qml/FooterItem.qml
-        qml/PlayersItem.qml
-        qml/TurnsItem.qml
+        qml/PlayersView.qml
+        qml/TurnsView.qml
         qml/EnterNameDialog.qml
     RESOURCES
         android/AndroidManifest.xml

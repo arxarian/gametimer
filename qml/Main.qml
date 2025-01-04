@@ -48,7 +48,7 @@ Window {
             }
         }
 
-        PlayersItem {
+        PlayersView {
             id: playersArea
             z: 1
 
@@ -64,7 +64,7 @@ Window {
             }
         }
 
-        TurnsItem {
+        TurnsView {
             id: turnsArea
 
             Layout.verticalStretchFactor: 1
