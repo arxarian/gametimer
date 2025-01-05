@@ -13,6 +13,7 @@ Item {
         property int maxReachableTime: 60
 
         anchors.fill: parent
+        anchors.margins: 5
         orientation: Qt.Horizontal
         interactive: false
         model: GameData.players
@@ -38,14 +39,12 @@ Item {
                 anchors.fill: parent
 
                 Rectangle {
-                    color: "transparent"
-                    // radius: 10
+                    color: "#EEEEEE"
                     border.width: 1
                     border.color: Qt.darker("purple")
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Layout.margins: parent.width * 0.05
                     Layout.rightMargin: parent.width * 0.3
                     Layout.leftMargin: parent.width * 0.3
 
@@ -69,7 +68,6 @@ Item {
                         z: - 1
 
                         width: parent.width
-                        // radius: 10
                         color: item.player && item.player.alive ? "purple" : "gray"
                         opacity: 0.3
 
