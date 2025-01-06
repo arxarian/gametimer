@@ -12,36 +12,34 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 5
         spacing: 0
 
-        Item {
-            id: logoArea
-
-            Layout.preferredHeight: parent.height * 0.15
+        LogoArea {
+            Layout.preferredHeight: 3
+            Layout.fillHeight: true
             Layout.fillWidth: true
-
-            Rectangle {
-                anchors.fill: parent
-                opacity: 0.25
-                color: "purple"
-            }
-
-            Image {
-                anchors.fill: parent
-                source: "qrc:/logo.png"
-                fillMode: Image.PreserveAspectFit
-            }
         }
 
-        Item {
-            id: controlArea
-
-            Layout.verticalStretchFactor: 1
+        ControlArea {
+            Layout.preferredHeight: 4
             Layout.fillHeight: true
             Layout.fillWidth: true
 
             Rectangle {
+                z: -1
+                anchors.fill: parent
+                opacity: 0.35
+                color: "purple"
+            }
+        }
+
+        GameInfoArea {
+            Layout.preferredHeight: 1
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            Rectangle {
+                z: -1
                 anchors.fill: parent
                 opacity: 0.5
                 color: "purple"
@@ -49,10 +47,7 @@ Window {
         }
 
         PlayersView {
-            id: playersArea
-            z: 1
-
-            Layout.verticalStretchFactor: 1
+            Layout.preferredHeight: 6
             Layout.fillHeight: true
             Layout.fillWidth: true
 
@@ -65,9 +60,7 @@ Window {
         }
 
         TurnsView {
-            id: turnsArea
-
-            Layout.verticalStretchFactor: 1
+            Layout.preferredHeight: 6
             Layout.fillHeight: true
             Layout.fillWidth: true
 
@@ -78,29 +71,5 @@ Window {
                 color: "purple"
             }
         }
-
-
-        // HeadItem {
-        //     id: head
-        //     onToggleScreens: stackLayout.currentIndex = 1 - stackLayout.currentIndex
-        //     Layout.preferredHeight: parent.height * 0.12
-        //     Layout.fillWidth: true
-        // }
-
-        // StackLayout {
-        //     id: stackLayout
-        //     Layout.fillHeight: true
-        //     Layout.fillWidth: true
-
-        //     BodyItem {}
-
-        //     TurnsView {}
-        // }
-
-        // FooterItem {
-        //     id: footer
-        //     Layout.fillWidth: true
-        //     Layout.preferredHeight: parent.height * 0.15
-        // }
     }
 }

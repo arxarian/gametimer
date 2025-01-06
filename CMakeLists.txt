@@ -25,11 +25,12 @@ qt_add_qml_module(appGameTimer
     VERSION 1.0
     QML_FILES
         qml/Main.qml
-        qml/HeadItem.qml
-        qml/FooterItem.qml
+        qml/ControlArea.qml
+        qml/GameInfoArea.qml
         qml/PlayersView.qml
         qml/TurnsView.qml
         qml/EnterNameDialog.qml
+        qml/LogoArea.qml
     RESOURCES
         android/AndroidManifest.xml
         android/build.gradle
