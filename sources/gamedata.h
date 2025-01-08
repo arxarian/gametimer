@@ -26,6 +26,10 @@ public:
 
     Q_INVOKABLE void reset();
     Q_INVOKABLE void start();
+    Q_INVOKABLE void resume();
+    Q_INVOKABLE void pause();
+    Q_INVOKABLE void stop();
+    Q_INVOKABLE void end();
 
     int turn() const;
     void setTurn(int turn);

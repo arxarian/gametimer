@@ -26,6 +26,26 @@ void GameData::start()
     setRunning(true);
 }
 
+void GameData::resume()
+{
+    //
+}
+
+void GameData::pause()
+{
+    //
+}
+
+void GameData::stop()
+{
+    //
+}
+
+void GameData::end()
+{
+    //
+}
+
 int GameData::turn() const
 {
     return m_turnsModel->count() + 1;

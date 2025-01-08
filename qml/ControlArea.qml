@@ -12,8 +12,9 @@ Item {
         currentIndex: GameData.controlPaneIndex
 
         Item {
+            id: newGamePane
+
             Column {
-                id: newGamePane
                 anchors.centerIn: parent
                 height: parent.height * 0.75
                 width: parent.width
@@ -73,27 +74,104 @@ Item {
 
         Item {
             id: stoppedGamePane
+
+            Column {
+                anchors.centerIn: parent
+                height: parent.height * 0.5
+                width: parent.width
+
+                ToolButton {
+                    text: "Continue"
+                    height: parent.height * 0.5
+                    width: parent.width
+                    font.pixelSize: height * 0.75
+                    onClicked: GameData.resume()
+                }
+
+                ToolButton {
+                    text: "End"
+                    height: parent.height * 0.5
+                    width: parent.width
+                    font.pixelSize: height * 0.75
+                    onClicked: GameData.end()
+                }
+            }
         }
 
         Item {
             id: runningGamePane
 
-            Row {
+            Item {
                 anchors.fill: parent
 
-                ToolButton {
-                    icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
-                    icon.height: parent.height * 0.5
-                    icon.width: parent.height * 0.5
-                    onClicked: GameData.running = !GameData.running
-                }
+                Column {
+                    anchors.fill: parent
 
-                ToolButton {
-                    // text: qsTr("Next\nplayer")
-                    icon.source: "qrc:/next_player.png"
-                    icon.height: parent.height * 0.5
-                    icon.width: parent.height * 0.5
-                    onClicked: GameData.players.setNextPlayer()
+                    Item {
+                        id: playerInfo
+
+                        property PlayerItem currentPlayer: GameData.players.currentPlayer
+
+                        height: parent.height * 0.35
+                        width: parent.width
+
+                        Label {
+                            anchors.top: parent.top
+                            anchors.topMargin: 5
+                            anchors.left: parent.left
+                            anchors.leftMargin: 20
+                            height: parent.height * 0.6
+                            width: parent.width * 0.5
+                            text: playerInfo.currentPlayer.name
+                            font.bold: true
+                            font.pixelSize: height * 0.75
+                        }
+
+                        Label {
+                            anchors.top: parent.top
+                            anchors.topMargin: 5
+                            anchors.rightMargin: 20
+                            anchors.right: parent.right
+                            height: parent.height * 0.6
+                            width: parent.width * 0.5
+                            text: playerInfo.currentPlayer.elapsedTime
+                            horizontalAlignment: Text.AlignRight
+                            font.bold: true
+                            font.pixelSize: height * 0.75
+                        }
+                    }
+
+                    Row {
+                        width: parent.width
+                        height: parent.height * 0.5
+
+                        ToolButton {
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.width * 0.25
+                            icon.source: "qrc:/stop.png"
+                            icon.height: parent.height * 0.5
+                            icon.width: parent.height * 0.5
+                            onClicked: GameData.stop()
+                        }
+
+                        ToolButton {
+                            height: parent.height
+                            width: parent.width * 0.5
+                            icon.source: "qrc:/next_player.png"
+                            icon.height: parent.height
+                            icon.width: parent.height
+                            onClicked: GameData.players.setNextPlayer()
+                        }
+
+                        ToolButton {
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: parent.width * 0.25
+                            icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
+                            icon.height: parent.height * 0.5
+                            icon.width: parent.height * 0.5
+                            onClicked: GameData.pause()
+                        }
+                    }
                 }
             }
         }
