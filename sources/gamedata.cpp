@@ -20,6 +20,12 @@ void GameData::reset()
     m_turnsModel->reset();
 }
 
+void GameData::start()
+{
+    setControlPaneIndex(2);
+    setRunning(true);
+}
+
 int GameData::turn() const
 {
     return m_turnsModel->count() + 1;
@@ -92,5 +98,19 @@ void GameData::setTurns(TurnModel *turns)
     {
         m_turnsModel = turns;
         emit turnsChanged();
+    }
+}
+
+int GameData::controlPaneIndex() const
+{
+    return m_controlPaneIndex;
+}
+
+void GameData::setControlPaneIndex(int newControlPaneIndex)
+{
+    if (m_controlPaneIndex != newControlPaneIndex)
+    {
+        m_controlPaneIndex = newControlPaneIndex;
+        emit controlPaneIndexChanged();
     }
 }

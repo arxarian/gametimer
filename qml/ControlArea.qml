@@ -6,60 +6,95 @@ import GameTimer
 Item {
     id: root
 
-    Item {
-        id: wrapper
+    StackLayout {
+        id: controlPaneStackLayout
         anchors.fill: parent
+        currentIndex: GameData.controlPaneIndex
 
-        ToolButton {
-            icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
-            icon.height: wrapper.height * 0.5
-            icon.width: wrapper.height * 0.5
-            onClicked: GameData.running = !GameData.running
-        }
+        Item {
+            Column {
+                id: newGamePane
+                anchors.centerIn: parent
+                height: parent.height * 0.75
+                width: parent.width
 
-        ToolButton {
-            visible: GameData.running
-            anchors.horizontalCenter: parent.horizontalCenter
-            // text: qsTr("Next\nplayer")
-            icon.source: "qrc:/next_player.png"
-            icon.height: wrapper.height * 0.5
-            icon.width: wrapper.height * 0.5
-            // enabled: GameData.running
-            onClicked: GameData.players.setNextPlayer()
+                ToolButton {
+                    text: "Start"
+                    height: parent.height * 0.33
+                    width: parent.width
+                    font.pixelSize: height * 0.75
+                    onClicked: GameData.start()
+                }
 
-            Binding on palette.buttonText {
-                when: GameData.running
-                value: "black"
+                Label {
+                    text: "Players"
+                    height: parent.height * 0.33
+                    width: parent.width
+                    font.pixelSize: height * 0.75
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Item {
+                    height: parent.height * 0.33
+                    width: parent.width
+
+                    ToolButton {
+                        text: "+"
+                        anchors.right: playerCountLabel.left
+                        height: parent.height
+                        width: parent.width * 0.075
+                        font.pixelSize: height * 0.75
+                        onClicked: GameData.players.appendPlayer()
+                    }
+
+                    Label {
+                        id: playerCountLabel
+                        text: GameData.players.count
+                        anchors.centerIn: parent
+                        height: parent.height
+                        width: parent.width * 0.10
+                        font.pixelSize: height * 0.75
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    ToolButton {
+                        text: "-"
+                        anchors.left: playerCountLabel.right
+                        height: parent.height
+                        width: parent.width * 0.075
+                        font.pixelSize: height * 0.75
+                        onClicked: GameData.players.removeLastPlayer()
+                    }
+                }
             }
         }
 
-        Row {
-            anchors.right: parent.right
-            height: parent.height
-            visible: !GameData.running
-            spacing: 5
-            layoutDirection: Qt.RightToLeft
+        Item {
+            id: stoppedGamePane
+        }
 
-            ToolButton {
-                icon.source: "qrc:/reset.png"
-                icon.height: wrapper.height * 0.5
-                icon.width: wrapper.height * 0.5
-                onClicked: GameData.reset()
-            }
+        Item {
+            id: runningGamePane
 
-            ToolButton {
-                icon.source: "qrc:/minus.png"
-                icon.height: wrapper.height * 0.5
-                icon.width: wrapper.height * 0.5
-                enabled: GameData.players.count > 1
-                onClicked: GameData.players.removeLastPlayer()
-            }
+            Row {
+                anchors.fill: parent
 
-            ToolButton {
-                icon.source: "qrc:/plus.png"
-                icon.height: wrapper.height * 0.5
-                icon.width: wrapper.height * 0.5
-                onClicked: GameData.players.appendPlayer()
+                ToolButton {
+                    icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
+                    icon.height: parent.height * 0.5
+                    icon.width: parent.height * 0.5
+                    onClicked: GameData.running = !GameData.running
+                }
+
+                ToolButton {
+                    // text: qsTr("Next\nplayer")
+                    icon.source: "qrc:/next_player.png"
+                    icon.height: parent.height * 0.5
+                    icon.width: parent.height * 0.5
+                    onClicked: GameData.players.setNextPlayer()
+                }
             }
         }
     }

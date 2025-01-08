@@ -18,12 +18,14 @@ class GameData : public QObject
     Q_PROPERTY(PlayerModel* players READ players WRITE setPlayers NOTIFY playersChanged FINAL)
     Q_PROPERTY(TurnModel* turns READ turns WRITE setTurns NOTIFY turnsChanged FINAL)
     Q_PROPERTY(QString elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
+    Q_PROPERTY(int controlPaneIndex READ controlPaneIndex NOTIFY controlPaneIndexChanged FINAL)
     QML_SINGLETON
     QML_ELEMENT
 public:
     explicit GameData(QObject *parent = nullptr);
 
     Q_INVOKABLE void reset();
+    Q_INVOKABLE void start();
 
     int turn() const;
     void setTurn(int turn);
@@ -43,6 +45,9 @@ public:
     TurnModel *turns() const;
     void setTurns(TurnModel *turns);
 
+    int controlPaneIndex() const;
+    void setControlPaneIndex(int newControlPaneIndex);
+
 signals:
     void turnChanged();
     void totalTimeChanged();
@@ -51,6 +56,8 @@ signals:
     void elapsedTimeChanged();
     void turnsChanged();
 
+    void controlPaneIndexChanged();
+
 private:
     CountUpTimer* m_timer = nullptr;
     int m_turn = 1;
@@ -58,6 +65,7 @@ private:
     bool m_running = false;
     PlayerModel *m_playerModel = nullptr;
     TurnModel *m_turnsModel = nullptr;
+    int m_controlPaneIndex = 0;
 };
 
 #endif // GAMEDATA_H
