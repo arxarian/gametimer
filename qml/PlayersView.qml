@@ -64,12 +64,13 @@ Item {
 
                     Rectangle {
                         anchors.bottom: parent.bottom
-                        height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0) / view.maxReachableTime
-                        z: - 1
+                        anchors.bottomMargin: 1
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0)/ view.maxReachableTime
 
-                        width: parent.width
+                        width: parent.width - 2
                         color: item.player && item.player.alive ? "purple" : "gray"
-                        opacity: 0.3
+                        opacity: 0.4
 
                         Behavior on height {
                             NumberAnimation {duration: 300}
@@ -77,7 +78,7 @@ Item {
 
                         Binding on opacity {
                             when: item.player && item.player.active
-                            value: 1
+                            value: 0.7
                         }
 
                         Behavior on opacity {
