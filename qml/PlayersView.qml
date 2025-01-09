@@ -52,15 +52,15 @@ Item {
                         anchors.fill: parent
                         enabled: GameData.running
                         onClicked: item.player.alive = !item.player.alive
-                    }
 
-                    Image {
-                        visible: item.player ? !item.player.alive : false
-                        anchors.centerIn: parent
-                        height: parent.height
-                        width: parent.width * 0.7
-                        fillMode: Image.PreserveAspectFit
-                        source: "qrc:/skeleton.png"
+                        Image {
+                            visible: item.player ? !item.player.alive : false
+                            anchors.centerIn: parent
+                            height: parent.height
+                            width: parent.width * 0.7
+                            fillMode: Image.PreserveAspectFit
+                            source: "qrc:/skeleton.png"
+                        }
                     }
 
                     Rectangle {
