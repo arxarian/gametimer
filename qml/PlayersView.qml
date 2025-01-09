@@ -50,6 +50,7 @@ Item {
 
                     MouseArea {
                         anchors.fill: parent
+                        enabled: GameData.running
                         onClicked: item.player.alive = !item.player.alive
                     }
 

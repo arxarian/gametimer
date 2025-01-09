@@ -17,7 +17,7 @@ Item {
             Text {
                 anchors.fill: parent
                 font.pixelSize: parent.height / 2
-                text: qsTr("Total time %1").arg(GameData.elapsedTime)
+                text: qsTr("Game time %1").arg(GameData.elapsedTime)
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
             }

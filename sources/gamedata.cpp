@@ -9,6 +9,7 @@ GameData::GameData(QObject *parent)
 
     m_turnsModel = new TurnModel(this);
     connect(m_playerModel, &PlayerModel::newTurnStarted, m_turnsModel, &TurnModel::newTurn);
+    connect(m_turnsModel, &TurnModel::countChanged, this, &GameData::turnChanged);
 }
 
 void GameData::reset()
@@ -48,7 +49,7 @@ void GameData::end()
 
 int GameData::turn() const
 {
-    return m_turnsModel->count() + 1;
+    return m_turnsModel->count();
 }
 
 int GameData::totalTime() const
