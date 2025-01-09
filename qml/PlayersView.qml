@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 
 import GameTimer
 
@@ -89,7 +88,8 @@ Item {
 
                 Text {
                     id: text
-                    property int playerTime: item.player ? item.player.elapsedTime : 0
+
+                    property string playerTime: item.player ? item.player.elapsedTime : 0
                     property string playerName: item.player ? item.player.name : "undefined"
 
                     font.pixelSize: height / 2
