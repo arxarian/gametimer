@@ -18,6 +18,12 @@ Window {
             Layout.preferredHeight: 3
             Layout.fillHeight: true
             Layout.fillWidth: true
+
+            Rectangle {
+                z: -1
+                anchors.fill: parent
+                color: "#c79bc7"
+            }
         }
 
         ControlArea {
@@ -28,8 +34,7 @@ Window {
             Rectangle {
                 z: -1
                 anchors.fill: parent
-                opacity: 0.35
-                color: "purple"
+                color: "#d3b3d3"
             }
         }
 
@@ -41,8 +46,7 @@ Window {
             Rectangle {
                 z: -1
                 anchors.fill: parent
-                opacity: 0.5
-                color: "purple"
+                color: "#c79bc7"
             }
         }
 
@@ -54,8 +58,7 @@ Window {
             Rectangle {
                 z: -1
                 anchors.fill: parent
-                opacity: 0.8
-                color: "purple"
+                color: "#d3b3d3"
             }
         }
 
@@ -67,8 +70,7 @@ Window {
             Rectangle {
                 z: -1
                 anchors.fill: parent
-                opacity: 1
-                color: "purple"
+                color: "#c79bc7"
             }
         }
     }

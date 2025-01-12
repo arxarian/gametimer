@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 
 import GameTimer
@@ -6,17 +7,78 @@ import GameTimer
 Item {
     id: body
 
+    Label {
+        text: view.maxReachableTime
+        verticalAlignment: Label.AlignVCenter
+        horizontalAlignment: Label.AlignRight
+        height: parent.height * 0.1
+        width: parent.width * 0.075
+        font.pixelSize: height / 2
+    }
+
+    Label {
+        text: view.maxReachableTime / 2
+        verticalAlignment: Label.AlignVCenter
+        horizontalAlignment: Label.AlignRight
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height * 0.5 + 1
+        height: parent.height * 0.1
+        width: parent.width * 0.075
+        font.pixelSize: height / 2
+    }
+
+    Label {
+        text: "0 s"
+        verticalAlignment: Label.AlignVCenter
+        horizontalAlignment: Label.AlignRight
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: parent.height * 0.075
+        height: parent.height * 0.1
+        width: parent.width * 0.075
+        font.pixelSize: height / 2
+    }
+
+
     ListView {
         id: view
 
         property int maxReachableTime: 60
 
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.topMargin: parent.height * 0.05 + 1
+        anchors.leftMargin: parent.width * 0.04
         orientation: Qt.Horizontal
         interactive: false
         model: GameData.players
         currentIndex: GameData.players.currentPlayerIndex
+
+        Rectangle {
+            z: -1
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width - 40
+            height: 1
+            color: "#aaaaaa"
+        }
+
+        Rectangle {
+            z: -1
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: parent.height * 0.55 + 7
+            width: parent.width - 40
+            height: 1
+            color: "#aaaaaa"
+        }
+
+        Rectangle {
+            z: -1
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: parent.height * 0.1 + 5
+            width: parent.width - 40
+            height: 1
+            color: "#aaaaaa"
+        }
 
         delegate: Item {
             id: item
@@ -38,9 +100,7 @@ Item {
                 anchors.fill: parent
 
                 Rectangle {
-                    color: "#EEEEEE"
-                    border.width: 1
-                    border.color: Qt.darker("purple")
+                    color: Qt.darker("#963096", 1.05)
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -64,12 +124,12 @@ Item {
 
                     Rectangle {
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 1
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        //anchors.bottomMargin: 1
+                        //anchors.horizontalCenter: parent.horizontalCenter
                         height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0)/ view.maxReachableTime
 
-                        width: parent.width - 2
-                        color: item.player && item.player.alive ? "purple" : "gray"
+                        width: parent.width// - 2
+                        color: item.player && item.player.alive ? "gray" : Qt.lighter("purple")
                         opacity: 0.4
 
                         Behavior on height {
@@ -96,7 +156,7 @@ Item {
                     font.pixelSize: height / 2
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: qsTr("%1\n%2").arg(text.playerTime).arg(text.playerName)
+                    text: qsTr("%1").arg(text.playerName)
 
                     Layout.preferredHeight: parent.height * 0.1
                     Layout.fillWidth: true
