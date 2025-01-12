@@ -28,7 +28,7 @@ Item {
     }
 
     Label {
-        text: "0 s"
+        text: "0"
         verticalAlignment: Label.AlignVCenter
         horizontalAlignment: Label.AlignRight
         anchors.bottom: parent.bottom
@@ -99,50 +99,38 @@ Item {
             ColumnLayout {
                 anchors.fill: parent
 
-                Rectangle {
-                    color: Qt.darker("#963096", 1.05)
+                MouseArea {
+                    enabled: GameData.running
+                    onClicked: item.player.alive = !item.player.alive
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     Layout.rightMargin: parent.width * 0.3
                     Layout.leftMargin: parent.width * 0.3
 
-                    MouseArea {
-                        anchors.fill: parent
-                        enabled: GameData.running
-                        onClicked: item.player.alive = !item.player.alive
-
-                        Image {
-                            visible: item.player ? !item.player.alive : false
-                            anchors.centerIn: parent
-                            height: parent.height
-                            width: parent.width * 0.7
-                            fillMode: Image.PreserveAspectFit
-                            source: "qrc:/skeleton.png"
-                        }
+                    Image {
+                        visible: item.player ? !item.player.alive : false
+                        anchors.centerIn: parent
+                        height: parent.height
+                        width: parent.width * 0.7
+                        fillMode: Image.PreserveAspectFit
+                        source: "qrc:/skeleton.png"
                     }
 
                     Rectangle {
                         anchors.bottom: parent.bottom
-                        //anchors.bottomMargin: 1
-                        //anchors.horizontalCenter: parent.horizontalCenter
                         height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0)/ view.maxReachableTime
 
-                        width: parent.width// - 2
-                        color: item.player && item.player.alive ? "gray" : Qt.lighter("purple")
-                        opacity: 0.4
+                        width: parent.width
+                        color: item.player && item.player.alive ? "#cb6bcb" : "#b29fb2"
 
                         Behavior on height {
                             NumberAnimation {duration: 300}
                         }
 
-                        Binding on opacity {
+                        Binding on color {
                             when: item.player && item.player.active
-                            value: 0.7
-                        }
-
-                        Behavior on opacity {
-                            OpacityAnimator {duration: 300}
+                            value: "#c636c6"
                         }
                     }
                 }
