@@ -41,12 +41,12 @@ Item {
                     width: parent.width
 
                     ToolButton {
-                        text: "+"
+                        text: "-"
                         anchors.right: playerCountLabel.left
                         height: parent.height
                         width: parent.width * 0.075
                         font.pixelSize: height * 0.75
-                        onClicked: GameData.players.appendPlayer()
+                        onClicked: GameData.players.removeLastPlayer()
                     }
 
                     Label {
@@ -61,12 +61,12 @@ Item {
                     }
 
                     ToolButton {
-                        text: "-"
+                        text: "+"
                         anchors.left: playerCountLabel.right
                         height: parent.height
                         width: parent.width * 0.075
                         font.pixelSize: height * 0.75
-                        onClicked: GameData.players.removeLastPlayer()
+                        onClicked: GameData.players.appendPlayer()
                     }
                 }
             }
@@ -160,16 +160,22 @@ Item {
                             icon.source: "qrc:/next_player.png"
                             icon.height: parent.height
                             icon.width: parent.height
-                            onClicked: GameData.players.setNextPlayer()
+                            onClicked: {
+                                if (GameData.paused) {
+                                    GameData.resume()
+                                }
+
+                                GameData.players.setNextPlayer()
+                            }
                         }
 
                         ToolButton {
                             anchors.verticalCenter: parent.verticalCenter
                             width: parent.width * 0.25
-                            icon.source: GameData.running ? "qrc:/pause.png" : "qrc:/play.png"
+                            icon.source: GameData.paused ? "qrc:/play.png" : "qrc:/pause.png"
                             icon.height: parent.height * 0.5
                             icon.width: parent.height * 0.5
-                            onClicked: GameData.pause()
+                            onClicked: GameData.paused ? GameData.resume() : GameData.pause()
                         }
                     }
                 }

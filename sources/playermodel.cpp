@@ -27,6 +27,18 @@ PlayerModel::PlayerModel(QObject *parent)
             }
         });
     });
+
+    connect(gameData, &GameData::pausedChanged, this, [this, gameData]
+    {
+        if (gameData->paused())
+        {
+            m_currentPlayer->stopTimer();
+        }
+        else
+        {
+            m_currentPlayer->startTimerIfActive();
+        }
+    });
 }
 
 

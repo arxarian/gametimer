@@ -13,6 +13,7 @@ class GameData : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged FINAL)
+    Q_PROPERTY(bool paused READ paused WRITE setPaused NOTIFY pausedChanged FINAL)
     Q_PROPERTY(int turn READ turn NOTIFY turnChanged FINAL)
     Q_PROPERTY(int totalTime READ totalTime WRITE setTotalTime NOTIFY totalTimeChanged FINAL)
     Q_PROPERTY(PlayerModel* players READ players WRITE setPlayers NOTIFY playersChanged FINAL)
@@ -52,6 +53,9 @@ public:
     int controlPaneIndex() const;
     void setControlPaneIndex(int newControlPaneIndex);
 
+    bool paused() const;
+    void setPaused(bool paused);
+
 signals:
     void turnChanged();
     void totalTimeChanged();
@@ -59,8 +63,8 @@ signals:
     void playersChanged();
     void elapsedTimeChanged();
     void turnsChanged();
-
     void controlPaneIndexChanged();
+    void pausedChanged();
 
 private:
     CountUpTimer* m_timer = nullptr;
@@ -70,6 +74,7 @@ private:
     PlayerModel *m_playerModel = nullptr;
     TurnModel *m_turnsModel = nullptr;
     int m_controlPaneIndex = 0;
+    bool m_paused = false;
 };
 
 #endif // GAMEDATA_H

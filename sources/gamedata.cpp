@@ -29,12 +29,12 @@ void GameData::start()
 
 void GameData::resume()
 {
-    //
+    setPaused(false);
 }
 
 void GameData::pause()
 {
-    //
+    setPaused(true);
 }
 
 void GameData::stop()
@@ -133,5 +133,19 @@ void GameData::setControlPaneIndex(int newControlPaneIndex)
     {
         m_controlPaneIndex = newControlPaneIndex;
         emit controlPaneIndexChanged();
+    }
+}
+
+bool GameData::paused() const
+{
+    return m_paused;
+}
+
+void GameData::setPaused(bool paused)
+{
+    if (m_paused != paused)
+    {
+        m_paused = paused;
+        emit pausedChanged();
     }
 }
