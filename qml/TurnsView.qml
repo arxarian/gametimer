@@ -57,14 +57,18 @@ Item {
 
                 Label {
                     id: text
+
                     anchors.top: parent.bottom
                     anchors.topMargin: -2
 
                     width: parent.width
                     height: parent.height * 0.1 + 2
+
+                    font.pixelSize: height / 2
                     visible: (index === 0 || (index + 1) % 5 === 0)
                     text: index + 1
                     horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                 }
             }
         }
