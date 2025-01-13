@@ -36,6 +36,7 @@ signals:
 
 private:
     QList<TurnItem*> m_items;
+    int m_currentTurn = 0;
 };
 
 #endif // TURNMODEL_H

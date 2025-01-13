@@ -49,7 +49,7 @@ void GameData::end()
 
 int GameData::turn() const
 {
-    return m_turnsModel->count();
+    return m_turnsModel->count() + 1;
 }
 
 int GameData::totalTime() const

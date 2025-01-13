@@ -5,23 +5,20 @@
 TurnModel::TurnModel(QObject *parent)
     : QAbstractListModel{parent}
 {
+    for (int i = 0; i < 5; i++) {
+        m_items.append(new TurnItem(this));
+    }
+
     GameData* gameData = qobject_cast<GameData*>(parent);
     connect(gameData, &GameData::runningChanged, this, [this, gameData]
     {
         if (gameData->running())
         {
-            if (m_items.isEmpty())
-            {
-                newTurn();
-            }
-            else
-            {
-                m_items.last()->startTimer();
-            }
+            m_items.at(m_currentTurn)->startTimer();
         }
         else
         {
-            m_items.last()->stopTimer();
+            m_items.at(m_currentTurn)->stopTimer();
         }
     });
 }
@@ -57,32 +54,37 @@ QHash<int, QByteArray> TurnModel::roleNames() const
 
 void TurnModel::newTurn()
 {
-    if (!m_items.isEmpty())
+    m_items.at(m_currentTurn)->stopTimer();
+
+    if (m_currentTurn == m_items.count() - 1)
     {
-        m_items.last()->stopTimer();
+        emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
+        m_items.append(new TurnItem(this));
+        emit endInsertRows();
+
     }
 
-    emit beginInsertRows(QModelIndex(), rowCount(), rowCount());
-    m_items.append(new TurnItem(this));
-    emit endInsertRows();
+    m_currentTurn++;
+    m_items.at(m_currentTurn)->startTimer();
 
     emit countChanged();
 }
 
 void TurnModel::reset()
 {
-    if (!m_items.isEmpty())
-    {
-        emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-        qDeleteAll(m_items);
-        m_items.clear();
-        emit endRemoveRows();
+    qDebug() << "TODO - reset turn model is not implemented";
+    // if (!m_items.isEmpty())
+    // {
+    //     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
+    //     qDeleteAll(m_items);
+    //     m_items.clear();
+    //     emit endRemoveRows();
 
-        emit countChanged();
-    }
+    //     emit countChanged();
+    // }
 }
 
 int TurnModel::count() const
 {
-    return rowCount();
+    return m_currentTurn;
 }
