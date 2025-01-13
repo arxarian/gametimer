@@ -85,7 +85,7 @@ Item {
                     height: parent.height * 0.5
                     width: parent.width
                     font.pixelSize: height * 0.75
-                    onClicked: GameData.resume()
+                    onClicked: GameData.start()
                 }
 
                 ToolButton {

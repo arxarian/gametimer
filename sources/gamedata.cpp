@@ -25,6 +25,7 @@ void GameData::start()
 {
     setControlPaneIndex(2);
     setRunning(true);
+    setPaused(false);
 }
 
 void GameData::resume()
@@ -39,7 +40,8 @@ void GameData::pause()
 
 void GameData::stop()
 {
-    //
+    setControlPaneIndex(1);
+    setRunning(false);
 }
 
 void GameData::end()
