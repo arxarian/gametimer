@@ -25,10 +25,11 @@ Item {
 
         delegate: Item {
             id: item
-            height: view.height
-            width: view.width / view.count
 
             property PlayerItem player: model.object
+
+            height: view.height
+            width: view.width / view.count
 
             Connections {
                 target: item.player
@@ -107,75 +108,9 @@ Item {
             }
         }
 
-        Item {
+        GraphMarkers {
             anchors.fill: parent
-
-            Rectangle {
-                id: topMarker
-                z: -1
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - 40
-                height: 1
-                color: "#aaaaaa"
-            }
-
-            Label {
-                text: view.maxReachableTime // TODO - what about 99:59:59; 59:59 is okay
-                verticalAlignment: Label.AlignVCenter
-                horizontalAlignment: Label.AlignRight
-                anchors.verticalCenter: topMarker.verticalCenter
-                anchors.verticalCenterOffset: -2
-                anchors.right: parent.left
-                anchors.rightMargin: -parent.width * 0.04
-                height: parent.height * 0.12
-                width: parent.width * 0.075
-                font.pixelSize: height / 2
-            }
-
-            Rectangle {
-                id: middleMarker
-                z: -1
-                anchors.centerIn: parent
-                width: parent.width - 40
-                height: 1
-                color: "#aaaaaa"
-            }
-
-            Label {
-                text: view.maxReachableTime / 2
-                verticalAlignment: Label.AlignVCenter
-                horizontalAlignment: Label.AlignRight
-                anchors.verticalCenter: middleMarker.verticalCenter
-                anchors.verticalCenterOffset: -2
-                anchors.right: parent.left
-                anchors.rightMargin: -parent.width * 0.04
-                height: parent.height * 0.12
-                width: parent.width * 0.075
-                font.pixelSize: height / 2
-            }
-
-            Rectangle {
-                id: bottomMarker
-                z: -1
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.bottom
-                width: parent.width - 40
-                height: 1
-                color: "#aaaaaa"
-            }
-
-            Label {
-                text: "0"
-                verticalAlignment: Label.AlignVCenter
-                horizontalAlignment: Label.AlignRight
-                anchors.verticalCenter: bottomMarker.verticalCenter
-                anchors.verticalCenterOffset: -2
-                anchors.right: parent.left
-                anchors.rightMargin: -parent.width * 0.04
-                height: parent.height * 0.12
-                width: parent.width * 0.075
-                font.pixelSize: height / 2
-            }
+            maxReachableTime: view.maxReachableTime
         }
     }
 }

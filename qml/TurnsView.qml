@@ -1,61 +1,78 @@
 import QtQuick
-import QtQuick.Layouts
+import QtQuick.Controls
+
 import GameTimer
 
 Item {
     id: root
 
-    ListView {
-        id: view
-
-        property int maxReachableTime: 60
-
+    Item {
         anchors.fill: parent
-        anchors.margins: 5
-        clip: true
+        anchors.rightMargin: 5
+        anchors.topMargin: parent.height * 0.04
+        anchors.leftMargin: parent.width * 0.04
+        anchors.bottomMargin: parent.height * 0.08
 
-        orientation: Qt.Horizontal
-        model: GameData.turns
-        spacing: 5
-        currentIndex: view.count - 1
+        ListView {
+            id: view
 
-        delegate: Item {
-            id: item
+            property int maxReachableTime: 60
 
-            property TurnItem turn: model.object
+            anchors.fill: parent
+            anchors.leftMargin: parent.width * 0.06
+            anchors.rightMargin: parent.width * 0.02
 
-            width: 15
-            height: view.height - text.contentHeight - 10
+            orientation: Qt.Horizontal
+            model: GameData.turns
+            spacing: 5
+            currentIndex: view.count - 1
 
-            Connections {
-                target: item.turn
-                function onTimeChanged() {
-                    if (item.turn.time > view.maxReachableTime) {
-                        view.maxReachableTime = view.maxReachableTime * 1.5
+            delegate: Item {
+                id: item
+
+                property TurnItem turn: model.object
+
+                height: view.height
+                width: 14
+
+                Connections {
+                    target: item.turn
+                    function onTimeChanged() {
+                        if (item.turn.time > view.maxReachableTime) {
+                            view.maxReachableTime = view.maxReachableTime * 1.5
+                        }
                     }
                 }
-            }
 
-            Rectangle {
-                anchors.bottom: parent.bottom
-                width: parent.width
-                height: parent.height * (item.turn ? item.turn.time : 0) / view.maxReachableTime
-                color: "#EEEEEE"
+                Rectangle {
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    height: parent.height * (item.turn ? item.turn.time : 0) / view.maxReachableTime
+                    color: GameData.turn - 1 === index ? "#b231b2" : "#c354c3"
 
-                Behavior on height {
-                    NumberAnimation {duration: 300}
+                    Behavior on height {
+                        NumberAnimation {duration: 300}
+                    }
+                }
+
+                Label {
+                    id: text
+                    anchors.top: parent.bottom
+                    anchors.topMargin: -2
+
+                    width: parent.width
+                    height: parent.height * 0.1 + 2
+                    visible: (index === 0 || (index + 1) % 5 === 0)
+                    text: index + 1
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
+        }
 
-            Text {
-                id: text
-                anchors.topMargin: 5
-                anchors.top: parent.bottom
-                width: parent.width
-                visible: (index === 0 || (index + 1) % 5 === 0)
-                text: index + 1
-                horizontalAlignment: Text.AlignHCenter
-            }
+        GraphMarkers {
+            anchors.fill: parent
+            maxReachableTime: view.maxReachableTime
+            markerColor: "#999999"
         }
     }
 }

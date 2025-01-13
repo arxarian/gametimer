@@ -31,6 +31,7 @@ qt_add_qml_module(appGameTimer
         qml/TurnsView.qml
         qml/EnterNameDialog.qml
         qml/LogoArea.qml
+        qml/GraphMarkers.qml
     RESOURCES
         android/AndroidManifest.xml
         android/build.gradle

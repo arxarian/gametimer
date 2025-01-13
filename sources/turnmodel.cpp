@@ -5,7 +5,7 @@
 TurnModel::TurnModel(QObject *parent)
     : QAbstractListModel{parent}
 {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 20; i++) {
         m_items.append(new TurnItem(this));
     }
 
