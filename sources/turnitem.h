@@ -15,6 +15,8 @@ class TurnItem : public QObject
 public:
     explicit TurnItem(QObject *parent = nullptr);
 
+    Q_INVOKABLE void reset();
+
     void startTimer();
     void stopTimer();
     int time() const;

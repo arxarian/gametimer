@@ -2,10 +2,12 @@
 #include "turnitem.h"
 #include "gamedata.h"
 
+constexpr const int DefaultTurnsCount = 20;
+
 TurnModel::TurnModel(QObject *parent)
     : QAbstractListModel{parent}
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < DefaultTurnsCount; i++) {
         m_items.append(new TurnItem(this));
     }
 
@@ -72,16 +74,28 @@ void TurnModel::newTurn()
 
 void TurnModel::reset()
 {
-    qDebug() << "TODO - reset turn model is not implemented";
-    // if (!m_items.isEmpty())
-    // {
-    //     emit beginRemoveRows(QModelIndex(), 0, rowCount() - 1);
-    //     qDeleteAll(m_items);
-    //     m_items.clear();
-    //     emit endRemoveRows();
+    for (int i = 0; i < DefaultTurnsCount; ++i)
+    {
+        m_items[i]->reset();
+    }
 
-    //     emit countChanged();
-    // }
+    if (m_items.count() > DefaultTurnsCount)
+    {
+        emit beginRemoveRows(QModelIndex(), DefaultTurnsCount, rowCount() - 1);
+
+        for (int i = DefaultTurnsCount; i < rowCount(); ++i)
+        {
+            m_items[i]->deleteLater();
+        }
+
+         m_items.remove(DefaultTurnsCount, rowCount() - DefaultTurnsCount);
+
+        emit endRemoveRows();
+    }
+
+    m_currentTurn = 0;
+
+    emit countChanged();
 }
 
 int TurnModel::count() const

@@ -25,7 +25,6 @@ class GameData : public QObject
 public:
     explicit GameData(QObject *parent = nullptr);
 
-    Q_INVOKABLE void reset();
     Q_INVOKABLE void start();   // start/resume form stopped
     Q_INVOKABLE void resume();  // resume from pause
     Q_INVOKABLE void pause();   // paused - player's time is not running

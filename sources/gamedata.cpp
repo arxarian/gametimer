@@ -12,15 +12,6 @@ GameData::GameData(QObject *parent)
     connect(m_turnsModel, &TurnModel::countChanged, this, &GameData::turnChanged);
 }
 
-void GameData::reset()
-{
-    setRunning(false);
-
-    m_timer->reset();
-    m_playerModel->reset();
-    m_turnsModel->reset();
-}
-
 void GameData::start()
 {
     setControlPaneIndex(2);
@@ -46,7 +37,12 @@ void GameData::stop()
 
 void GameData::end()
 {
-    //
+    setControlPaneIndex(0);
+
+    m_timer->reset();
+    m_playerModel->reset();
+    m_turnsModel->reset();
+
 }
 
 int GameData::turn() const

@@ -7,6 +7,11 @@ TurnItem::TurnItem(QObject *parent)
     connect(m_timer, &CountUpTimer::elapsedTimeChanged, this, &TurnItem::timeChanged);
 }
 
+void TurnItem::reset()
+{
+    m_timer->reset();
+}
+
 void TurnItem::startTimer()
 {
     m_timer->start();
