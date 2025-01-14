@@ -33,7 +33,7 @@ Item {
                 property TurnItem turn: model.object
 
                 height: view.height
-                width: 14
+                width: 13
 
                 Connections {
                     target: item.turn
