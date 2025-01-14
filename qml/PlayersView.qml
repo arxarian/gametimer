@@ -49,6 +49,7 @@ Item {
                 onClicked: item.player.alive = !item.player.alive
 
                 Image {
+                    z: 1
                     visible: item.player ? !item.player.alive : false
                     anchors.centerIn: parent
                     height: parent.height
