@@ -19,53 +19,44 @@ Item {
                 height: parent.height * 0.75
                 width: parent.width
 
-                ToolButton {
+                MenuButton {
                     text: "Start"
                     height: parent.height * 0.33
                     width: parent.width
-                    font.pixelSize: height * 0.75
                     onClicked: GameData.start()
                 }
 
-                Label {
+                MenuLabel {
                     text: "Players"
                     height: parent.height * 0.33
                     width: parent.width
-                    font.pixelSize: height * 0.75
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
                 }
 
                 Item {
                     height: parent.height * 0.33
                     width: parent.width
 
-                    ToolButton {
-                        text: "-"
+                    MenuButton {
                         anchors.right: playerCountLabel.left
                         height: parent.height
                         width: parent.width * 0.075
-                        font.pixelSize: height * 0.75
+                        text: "-"
                         onClicked: GameData.players.removeLastPlayer()
                     }
 
-                    Label {
+                    MenuLabel {
                         id: playerCountLabel
                         text: GameData.players.count
                         anchors.centerIn: parent
                         height: parent.height
                         width: parent.width * 0.10
-                        font.pixelSize: height * 0.75
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                     }
 
-                    ToolButton {
+                    MenuButton {
                         text: "+"
                         anchors.left: playerCountLabel.right
                         height: parent.height
                         width: parent.width * 0.075
-                        font.pixelSize: height * 0.75
                         onClicked: GameData.players.appendPlayer()
                     }
                 }
@@ -80,19 +71,17 @@ Item {
                 height: parent.height * 0.5
                 width: parent.width
 
-                ToolButton {
+                MenuButton {
                     text: "Continue"
                     height: parent.height * 0.5
                     width: parent.width
-                    font.pixelSize: height * 0.75
                     onClicked: GameData.start()
                 }
 
-                ToolButton {
+                MenuButton {
                     text: "End"
                     height: parent.height * 0.5
                     width: parent.width
-                    font.pixelSize: height * 0.75
                     onClicked: GameData.end()
                 }
             }
