@@ -25,5 +25,5 @@ void TurnItem::stopTimer()
 
 int TurnItem::time() const
 {
-    return m_timer->elapsedTimeNumber();
+    return m_timer->elapsedTime();
 }

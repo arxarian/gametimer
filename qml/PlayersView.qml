@@ -33,8 +33,8 @@ Item {
 
             Connections {
                 target: item.player
-                function onElapsedTimeNumberChanged() {
-                    if (item.player.elapsedTimeNumber > view.maxReachableTime) {
+                function onElapsedTimeChanged() {
+                    if (item.player.elapsedTime > view.maxReachableTime) {
                         view.maxReachableTime = view.maxReachableTime * 1.5
                     }
                 }
@@ -59,7 +59,7 @@ Item {
 
                 Rectangle {
                     anchors.bottom: parent.bottom
-                    height: parent.height * (item.player ? item.player.elapsedTimeNumber : 0)/ view.maxReachableTime
+                    height: parent.height * (item.player ? item.player.elapsedTime : 0)/ view.maxReachableTime
 
                     width: parent.width
                     color: item.player && item.player.alive ? "#cb6bcb" : "#b29fb2"
@@ -78,7 +78,6 @@ Item {
             Label {
                 id: text
 
-                property string playerTime: item.player ? item.player.elapsedTime : 0
                 property string playerName: item.player ? item.player.name : "undefined"
 
                 anchors.top: parent.bottom

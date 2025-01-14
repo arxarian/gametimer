@@ -8,18 +8,16 @@
 class CountUpTimer : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
+    Q_PROPERTY(int elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
     QML_ELEMENT
 public:
     explicit CountUpTimer(QObject *parent = nullptr);
-
-    Q_INVOKABLE int elapsedTimeNumber() const;
 
     void start();
     void stop();
     void reset();
 
-    QString elapsedTime() const;
+    int elapsedTime() const;
 
 signals:
     void elapsedTimeChanged();

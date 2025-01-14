@@ -31,25 +31,7 @@ void CountUpTimer::updateElapsedTime()
     emit elapsedTimeChanged();
 }
 
-QString CountUpTimer::elapsedTime() const
-{
-    const int hours = m_elapsedTime / 3600;
-    const int minutes = (m_elapsedTime % 3600) / 60;
-    const int seconds = m_elapsedTime % 60;
-
-    if (m_elapsedTime < 60)
-    {
-        return QString("%1 s").arg(seconds);
-    }
-    else if (m_elapsedTime < 3600)
-    {
-        return QString("%1:%2").arg(minutes).arg(seconds, 2, 10, QLatin1Char('0'));
-    }
-
-    return QString("%1:%2:%3").arg(hours).arg(minutes, 2, 10, QLatin1Char('0')).arg(seconds, 2, 10, QLatin1Char('0'));
-}
-
-int CountUpTimer::elapsedTimeNumber() const
+int CountUpTimer::elapsedTime() const
 {
     return m_elapsedTime;
 }

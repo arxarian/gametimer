@@ -134,7 +134,7 @@ Item {
                             anchors.right: parent.right
                             height: parent.height * 0.6
                             width: parent.width * 0.5
-                            text: playerInfo.currentPlayer.elapsedTime
+                            text: GameData.formatTime(playerInfo.currentPlayer.elapsedTime)
                             horizontalAlignment: Text.AlignRight
                             font.bold: true
                             font.pixelSize: height * 0.75

@@ -18,7 +18,7 @@ class GameData : public QObject
     Q_PROPERTY(int totalTime READ totalTime WRITE setTotalTime NOTIFY totalTimeChanged FINAL)
     Q_PROPERTY(PlayerModel* players READ players WRITE setPlayers NOTIFY playersChanged FINAL)
     Q_PROPERTY(TurnModel* turns READ turns WRITE setTurns NOTIFY turnsChanged FINAL)
-    Q_PROPERTY(QString elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
+    Q_PROPERTY(int elapsedTime READ elapsedTime NOTIFY elapsedTimeChanged FINAL)
     Q_PROPERTY(int controlPaneIndex READ controlPaneIndex NOTIFY controlPaneIndexChanged FINAL)
     QML_SINGLETON
     QML_ELEMENT
@@ -30,6 +30,8 @@ public:
     Q_INVOKABLE void pause();   // paused - player's time is not running
     Q_INVOKABLE void stop();    // stopped - no timer is running
     Q_INVOKABLE void end();
+
+    Q_INVOKABLE QString formatTime(const int seconds) const;
 
     int turn() const;
     void setTurn(int turn);
@@ -44,7 +46,7 @@ public:
     PlayerModel *players() const;
     void setPlayers(PlayerModel *playerModel);
 
-    QString elapsedTime() const;
+    int elapsedTime() const;
 
     TurnModel *turns() const;
     void setTurns(TurnModel *turns);

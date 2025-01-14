@@ -45,6 +45,24 @@ void GameData::end()
 
 }
 
+QString GameData::formatTime(const int seconds) const
+{
+    const int hour = seconds / 3600;
+    const int minute = (seconds % 3600) / 60;
+    const int second = seconds % 60;
+
+    if (seconds < 60)
+    {
+        return QString("%1").arg(second);
+    }
+    else if (seconds < 3600)
+    {
+        return QString("%1:%2").arg(minute).arg(second, 2, 10, QLatin1Char('0'));
+    }
+
+    return QString("%1:%2:%3").arg(hour).arg(minute, 2, 10, QLatin1Char('0')).arg(second, 2, 10, QLatin1Char('0'));
+}
+
 int GameData::turn() const
 {
     return m_turnsModel->count() + 1;
@@ -101,7 +119,7 @@ void GameData::setPlayers(PlayerModel *playerModel)
     }
 }
 
-QString GameData::elapsedTime() const
+int GameData::elapsedTime() const
 {
     return m_timer->elapsedTime();
 }

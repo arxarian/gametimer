@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import GameTimer
+
 Item {
     id: root
 
@@ -19,7 +21,7 @@ Item {
     }
     
     Label {
-        text: root.maxReachableTime // TODO - what about 99:59:59; 59:59 is okay
+        text: GameData.formatTime(root.maxReachableTime) // TODO - what about 99:59:59; 59:59 is okay
         verticalAlignment: Label.AlignVCenter
         horizontalAlignment: Label.AlignRight
         anchors.verticalCenter: topMarker.verticalCenter
@@ -41,7 +43,7 @@ Item {
     }
     
     Label {
-        text: root.maxReachableTime / 2
+        text: GameData.formatTime(root.maxReachableTime / 2)
         verticalAlignment: Label.AlignVCenter
         horizontalAlignment: Label.AlignRight
         anchors.verticalCenter: middleMarker.verticalCenter
