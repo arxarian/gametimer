@@ -39,8 +39,15 @@ Item {
                     MenuButton {
                         anchors.right: playerCountLabel.left
                         height: parent.height
-                        width: parent.width * 0.075
+                        width: parent.width * 0.15
                         text: "-"
+                        contentItem: Text {
+                            text: parent.text
+                            font: parent.font
+                            horizontalAlignment : Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
                         onClicked: GameData.players.removeLastPlayer()
                     }
 
@@ -56,7 +63,14 @@ Item {
                         text: "+"
                         anchors.left: playerCountLabel.right
                         height: parent.height
-                        width: parent.width * 0.075
+                        width: parent.width * 0.15
+                        contentItem: Text {
+                            text: parent.text
+                            font: parent.font
+                            horizontalAlignment : Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
                         onClicked: GameData.players.appendPlayer()
                     }
                 }
